@@ -57,6 +57,8 @@ package nid.xfl.core
 			tweenType 		= data.tweenType;
 			index			= data.index;
 			
+			stop = actionscript != null?actionscript.stop:false;
+			
 			rawElements = data.elements;
 			elements = new Vector.<FrameElement>();
 			
@@ -88,7 +90,6 @@ package nid.xfl.core
 		}
 		public function updateDisplay():void
 		{
-			
 			for (var e:int = 0; e < elements.length; e++)
 			{
 				if (elements[e].type == "timeline")
@@ -231,8 +232,8 @@ package nid.xfl.core
 						 */
 						if (isClone)
 						{
-							trace('\t cloned object placed');
-							trace('\t 	property.characterId:' + property.characterId);
+							//trace('\t cloned object placed');
+							//trace('\t 	property.characterId:' + property.characterId);
 							
 							if (isButton)
 							{						
@@ -264,8 +265,8 @@ package nid.xfl.core
 								XFLCompiler.displayList[p_depth +'_' + depth].libraryItemName == rawElements[i].libraryItemName
 								)
 							{
-								trace('\t   exist in depth');
-								trace('\t 		property.characterId:' + property.characterId);
+								//trace('\t   exist in depth');
+								//trace('\t 		property.characterId:' + property.characterId);
 								
 								placeObject.hasMatrix 			= true;
 								placeObject.hasMove 			= true;
@@ -287,7 +288,7 @@ package nid.xfl.core
 								}
 								else
 								{
-									trace('\t   not exist in library');
+									//trace('\t   not exist in library');
 									/**
 									* Definition New tag
 									*/
@@ -309,7 +310,7 @@ package nid.xfl.core
 								
 								if (XFLCompiler.displayList[p_depth +'_' + depth] != undefined)
 								{
-									trace('\t remove tag depth:' + depth);
+									//trace('\t remove tag depth:' + depth);
 									/**
 									 * Remove Tag
 									 */
@@ -327,7 +328,7 @@ package nid.xfl.core
 								
 								characterId = property.characterId;
 								
-								trace('\t place object depth:' + depth, "Char ID:" + characterId);
+								//trace('\t place object depth:' + depth, "Char ID:" + characterId);
 								
 								/**
 								 * Place tag

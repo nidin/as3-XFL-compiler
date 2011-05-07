@@ -1,10 +1,11 @@
 package nid.xfl.data.filters 
 {
+	import nid.xfl.interfaces.IFilter;
 	/**
 	 * ...
 	 * @author Nidin P Vinayakan
 	 */
-	public class BlurFilter 
+	public class BlurFilter implements IFilter
 	{
 		public var blurX:Number;
 		public var blurY:Number;

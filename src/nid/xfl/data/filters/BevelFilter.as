@@ -1,10 +1,11 @@
 package nid.xfl.data.filters 
 {
+	import nid.xfl.interfaces.IFilter;
 	/**
 	 * ...
 	 * @author Nidin P Vinayakan
 	 */
-	public class BevelFilter 
+	public class BevelFilter implements IFilter 
 	{
 		public var angle:Number;
 		public var blurX:Number;

@@ -1,11 +1,12 @@
 package nid.xfl.data.filters 
 {
 	import nid.utils.Boolean2;
+	import nid.xfl.interfaces.IFilter;
 	/**
 	 * ...
 	 * @author Nidin P Vinayakan
 	 */
-	public class DropShadowFilter 
+	public class DropShadowFilter implements IFilter
 	{
 		public var angle:Number;
 		public var blurX:Number;

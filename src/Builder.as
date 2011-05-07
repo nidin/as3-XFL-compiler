@@ -12,6 +12,7 @@ package
 	import flash.utils.setTimeout;
 	import nid.events.StatusEvent;
 	import nid.xfl.compiler.factory.FontFactory;
+	import nid.xfl.compiler.swf.SWF;
 	import nid.xfl.editor.avm.AVMEnvironment;
 	import nid.xfl.events.XFLEvent;
 	import nid.xfl.XFLCompiler;
@@ -31,9 +32,11 @@ package
 		private var xflObject:XFLObject;
 		private var compiler:XFLCompiler;
 		private var fileref:FileReference;
+		private var fileType:String;
 		private var ui:UI;
 		private var isReady:Boolean;
 		private var dump:Boolean;
+		private var swf:SWF;
 		
 		public function Builder() 
 		{
@@ -44,13 +47,26 @@ package
 		private function configUI(e:StatusEvent):void 
 		{
 			trace(e.type);
-			ui.select.addEventListener(MouseEvent.CLICK, browse);
+			ui.select_xfl.addEventListener(MouseEvent.CLICK, browse);
+			ui.select_swf.addEventListener(MouseEvent.CLICK, browse);
 			ui.export.addEventListener(MouseEvent.CLICK, exportSWF);
-			ui.dump.addEventListener(MouseEvent.CLICK, exportSWF);
+			ui.dump.addEventListener(MouseEvent.CLICK, dumpSWF);
 			ui.clear.addEventListener(MouseEvent.CLICK, clearConsole);
 			
 			compiler = new XFLCompiler();
 			compiler.addEventListener(XFLEvent.SWF_EXPORTED, saveSWF);
+		}
+		
+		private function dumpSWF(e:MouseEvent):void 
+		{
+			if (fileType == "xfl")
+			{
+				exportSWF(e);
+			}
+			else if (fileType == "swf")
+			{
+				ui.skin.console.text = swf.toString();
+			}
 		}
 		
 		public function exportSWF(e:Event):void
@@ -94,7 +110,16 @@ package
 		
 		private function loadBytes(e:Event):void 
 		{
-			load(fileref.data);
+			if (fileref.name.indexOf('swf') != -1)
+			{
+				fileType = "swf";
+				swf = new SWF(fileref.data);
+			}
+			else if(fileref.name.indexOf('zip') != -1)
+			{
+				fileType = "xfl";
+				load(fileref.data);
+			}
 		}
 		
 		private function saveSWF(e:XFLEvent):void 

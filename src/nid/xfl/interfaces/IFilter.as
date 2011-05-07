@@ -4,13 +4,9 @@ package nid.xfl.interfaces
 	 * ...
 	 * @author Nidin P Vinayakan
 	 */
-	public class IFilter 
+	public interface IFilter 
 	{
 		
-		public function IFilter() 
-		{
-			
-		}
 		
 	}
 

@@ -24,7 +24,8 @@ package
 		
 		public var skin:MovieClip;
 		
-		public function get select():DisplayObject { return skin.getChildByName("select"); }
+		public function get select_xfl():DisplayObject { return skin.getChildByName("select_xfl"); }
+		public function get select_swf():DisplayObject { return skin.getChildByName("select_swf"); }
 		public function get export():DisplayObject { return skin.getChildByName("export"); }
 		public function get dump():DisplayObject { return skin.getChildByName("dump"); }
 		public function get clear():DisplayObject { return skin.getChildByName("clear"); }

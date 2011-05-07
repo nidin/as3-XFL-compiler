@@ -6,6 +6,7 @@ package nid.xfl.data.script
 	 */
 	public class Actionscript 
 	{
+		public var stop:Boolean;
 		public var codes:Array;
 		public var script:String;
 		
@@ -21,6 +22,11 @@ package nid.xfl.data.script
 		{
 			script = String(data.script);
 			codes = script.split(";");
+			
+			if (codes.indexOf("stop()") != -1)
+			{
+				stop = true;
+			}
 		}
 		public function toString(indent:uint = 0):String
 		{

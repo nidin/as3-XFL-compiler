@@ -113,11 +113,13 @@ package nid.xfl.dom.elements
 			
 			transformationPoint = new Point(data.transformationPoint.Point.@x, data.transformationPoint.Point.@y);
 			
+			_filters = new Vector.<IFilter>();
+			
 			for (var i:int = 0; i < data.filters.*.length(); i++)
 			{
 				if (data.filters.*[i].toXMLString().indexOf("BlurFilter") != -1)
 				{
-					_filters..push(new BlurFilter(data.filters.*[i]));
+					_filters.push(new BlurFilter(data.filters.*[i]));
 				}
 				else if (data.filters.*[i].toXMLString().indexOf("DropShadowFilter") != -1)
 				{

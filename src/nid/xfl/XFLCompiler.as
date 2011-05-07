@@ -171,7 +171,7 @@ package nid.xfl
 			bytes.writeBytes(data);
 			
 			var swf:SWF = new SWF(bytes);
-			trace(swf);
+			//trace(swf);
 			dumpString = swf.toString();
 			
 			dispatchEvent(new XFLEvent(XFLEvent.SWF_EXPORTED));
@@ -179,17 +179,35 @@ package nid.xfl
 		
 		private function importABC():void 
 		{
-			var loader:URLLoader = new URLLoader();
-			loader.dataFormat = URLLoaderDataFormat.BINARY;
-			loader.addEventListener(Event.COMPLETE, parseABC);
-			loader.load(new URLRequest(xflobj.doc.BIN_PATH + 'abc.bin'));
+			if (xflobj.doc.TYPE == XFLType.ZIP)
+			{
+				//trace('abc.bin:' + xflobj.doc.zipDoc.files[xflobj.doc.NAME + '_abc.bin']);
+				parseABC(null, xflobj.doc.zipDoc.files[xflobj.doc.NAME + '_abc.bin']);
+			}
+			else 
+			{
+				var loader:URLLoader = new URLLoader();
+				loader.dataFormat = URLLoaderDataFormat.BINARY;
+				loader.addEventListener(Event.COMPLETE, parseABC);
+				loader.load(new URLRequest(xflobj.doc.BIN_PATH + 'abc.bin'));
+			}
 		}
 		
-		private function parseABC(e:Event):void 
+		private function parseABC(e:Event,ba:ByteArray=null):void 
 		{
 			var tagFactory:SWFTagFactory = new SWFTagFactory();
-			var abc_ba:ByteArray = e.target.data;
+			var abc_ba:ByteArray;
 			var abc_data:SWFData = new SWFData();
+			
+			if (xflobj.doc.TYPE == XFLType.ZIP)
+			{
+				abc_ba = ba;
+			}
+			else
+			{
+				abc_ba = e.target.data;
+			}
+			
 			abc_data.length = 0;
 			abc_ba.position = 0;
 			abc_ba.readBytes(abc_data);
@@ -240,16 +258,20 @@ package nid.xfl
 			{
 				for (var i:int = 0; i < SymbolClass.symbols.length; i++)
 				{
-					var sName1:String = SymbolClass.symbols[i].name;
+					var sName1:String = '_'+SymbolClass.symbols[i].name;
 					
 					for (var j:int = 0; j < ImportedSymbolClass.symbols.length; j++)
 					{
 						var sName2:String = ImportedSymbolClass.symbols[j].name;
+						sName2 = sName2.substring(0, sName2.lastIndexOf('_'));
 						
-						if (sName2.indexOf(sName1) != -1)
+						trace('sName1:' + sName1);
+						trace('sName2:' + sName2);
+						
+						if (sName1 == sName2)
 						{
-							trace('match found @: tagId:' + SymbolClass.symbols[i].tagId + ' name:' + ImportedSymbolClass.symbols[i].name);
-							ImportedSymbolClass.symbols[i].tagId = SymbolClass.symbols[i].tagId;
+							trace('match found @: tagId:' + SymbolClass.symbols[i].tagId + ' name:' + ImportedSymbolClass.symbols[j].name);
+							ImportedSymbolClass.symbols[j].tagId = SymbolClass.symbols[i].tagId;
 							//trace('--------------------------------');
 							//trace(SymbolClass.symbols[i]);
 							//trace(ImportedSymbolClass.symbols[i]);

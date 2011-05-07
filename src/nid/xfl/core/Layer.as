@@ -51,7 +51,6 @@ package nid.xfl.core
 							//frame = frames[i - 1].clone(f == (data.domframes.length - 1));
 							frame = frames[i - 1].clone();
 							applyMotion(frame, data, i, f);
-							trace('clone');
 						}
 						else
 						{

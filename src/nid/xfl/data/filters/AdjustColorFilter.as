@@ -1,10 +1,11 @@
 package nid.xfl.data.filters 
 {
+	import nid.xfl.interfaces.IFilter;
 	/**
 	 * ...
 	 * @author Nidin P Vinayakan
 	 */
-	public class AdjustColorFilter 
+	public class AdjustColorFilter implements IFilter 
 	{
 		
 		public function AdjustColorFilter(data:XML=null) 

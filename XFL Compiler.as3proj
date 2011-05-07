@@ -14,7 +14,7 @@
   <!-- Other classes to be compiled into your SWF -->
   <classpaths>
     <class path="src" />
-    <class path="..\..\FrameWorks\GUI Frame work\Dark\src" />
+    <class path="..\..\Nidin Data\WORK DESK\FrameWorks\GUI Frame work\Dark\src" />
     <class path="lib" />
   </classpaths>
   <!-- Build options -->

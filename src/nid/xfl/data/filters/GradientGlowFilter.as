@@ -1,10 +1,11 @@
 package nid.xfl.data.filters 
 {
+	import nid.xfl.interfaces.IFilter;
 	/**
 	 * ...
 	 * @author Nidin P Vinayakan
 	 */
-	public class GradientGlowFilter 
+	public class GradientGlowFilter implements IFilter 
 	{
 		
 		public function GradientGlowFilter(data:XML=null) 
