@@ -126,7 +126,7 @@ package nid.xfl.compiler.factory
 		 */
 		static public function registerFont(fontName:String,characters:String=""):void
 		{
-			trace('fontName:' + fontName);
+			//trace('fontName:' + fontName);
 			
 			if (!isFontExist(fontName))
 			{

@@ -4,12 +4,14 @@ package nid.xfl.core
 	import flash.geom.Matrix;
 	import flash.geom.Transform;
 	import flash.utils.Dictionary;
+	import nid.geom.DMatrix;
+	import nid.utils.MatrixConvertor;
 	import nid.xfl.compiler.swf.data.SWFButtonRecord;
 	import nid.xfl.compiler.swf.tags.ITag;
 	import nid.xfl.dom.DOMFrame;
 	import nid.xfl.dom.DOMLayer;
 	import nid.xfl.motion.EasingEquations;
-	import nid.xfl.motion.TweenType;
+	import nid.xfl.motion.TweenTypes;
 	/**
 	 * ...
 	 * @author Nidin P Vinayakan
@@ -78,24 +80,80 @@ package nid.xfl.core
 		{
 			switch(data.domframes[f].tweenType)
 			{
-				case TweenType.SHAPE:
+				case TweenTypes.SHAPE:
 				{
-					
+					//TODO: MorphCurves
 				}
 				break;
 				
-				case TweenType.MOTION:
+				case TweenTypes.MOTION:
 				{
-					var mat:Matrix = frame.elements[0].display.transform.matrix;
+					//if(
+					var mat:Matrix  = frame.elements[0].display.transform.matrix;
+					
+					if (data.domframes.length > f)
+					{
+						var dmat:DMatrix  = MatrixConvertor.convert(data.domframes[f].tweenMatrix);
+						var idmat:DMatrix  = MatrixConvertor.convert(data.domframes[f + 1].tweenMatrix);
+						
+						var t:Number	= i + 1 - data.domframes[f].index;
+						var d:Number	= data.domframes[f].duration + 1;
+						var acc:Number	= data.domframes[f].acceleration;
+						
+						var bx:Number	= data.domframes[f].tweenMatrix.tx;
+						var by:Number	= data.domframes[f].tweenMatrix.ty;
+						var cx:Number	= data.domframes[f + 1].tweenMatrix.tx - data.domframes[f].tweenMatrix.tx;
+						var cy:Number	= data.domframes[f + 1].tweenMatrix.ty - data.domframes[f].tweenMatrix.ty;
+						
+						var bsx:Number = dmat.scaleX;
+						var bsy:Number = dmat.scaleY;
+						var br:Number  = dmat.rotation;
+						
+						var csx:Number = idmat.scaleX - bsx;
+						var csy:Number = idmat.scaleY - bsy;
+						var cr:Number  = idmat.rotation - br;
+						
+						EasingEquations.easeMatrix(mat, t, bsx, bsy, br, csx, csy, cr, d, acc);
+						
+						mat.tx = EasingEquations.ease(t, bx, cx, d, acc);
+						mat.ty = EasingEquations.ease(t, by, cy, d, acc);
+						
+						
+						var alpha_b:Number = data.domframes[f].color.alphaMultiplier;
+						var alpha_c:Number = data.domframes[f + 1].color.alphaMultiplier - data.domframes[f].color.alphaMultiplier;
+						
+						if (frame.hasColorTransform)
+						{
+							if (data.domframes[f + 1].color.alphaMultiplier == data.domframes[f].color.alphaMultiplier)
+							{
+								frame.colorTransform.alphaMultiplier = data.domframes[f].color.alphaMultiplier;
+							}
+							else 
+							{
+								frame.colorTransform.alphaMultiplier = EasingEquations.ease(t, alpha_b, alpha_c, d, acc);
+							}
+						}
+						
+					}
+					
+					frame.matrix = mat;
+					
+					
+					//mat.a += 
+					//mat.b += 
+					//mat.c += 
+					//mat.d += 
+					
 					//trace(mat.toString());
+					
 					//Linear
 					//trace((i + 1 - data.domframes[f].index));
-					mat.tx += ((data.domframes[f + 1].tweenMatrix.tx - data.domframes[f].tweenMatrix.tx) / (data.domframes[f].duration + 1) ) * (i + 1 - data.domframes[f].index);
-					mat.ty += ((data.domframes[f + 1].tweenMatrix.ty - data.domframes[f].tweenMatrix.ty) / (data.domframes[f].duration + 1)) * (i + 1 - data.domframes[f].index);
-					mat.a += ((data.domframes[f + 1].tweenMatrix.a - data.domframes[f].tweenMatrix.a) / (data.domframes[f].duration + 1)) * (i + 1 - data.domframes[f].index);
-					mat.b += ((data.domframes[f + 1].tweenMatrix.b - data.domframes[f].tweenMatrix.b) / (data.domframes[f].duration + 1)) * (i + 1 - data.domframes[f].index);
-					mat.c += ((data.domframes[f + 1].tweenMatrix.c - data.domframes[f].tweenMatrix.c) / (data.domframes[f].duration + 1)) * (i + 1 - data.domframes[f].index);
-					mat.d += ((data.domframes[f + 1].tweenMatrix.d - data.domframes[f].tweenMatrix.d) / (data.domframes[f].duration + 1)) * (i + 1 - data.domframes[f].index);
+					//mat.tx += ((data.domframes[f + 1].tweenMatrix.tx - data.domframes[f].tweenMatrix.tx) / (data.domframes[f].duration + 1) ) * (i + 1 - data.domframes[f].index);
+					//mat.ty += ((data.domframes[f + 1].tweenMatrix.ty - data.domframes[f].tweenMatrix.ty) / (data.domframes[f].duration + 1)) * (i + 1 - data.domframes[f].index);
+					//mat.a += ((data.domframes[f + 1].tweenMatrix.a - data.domframes[f].tweenMatrix.a) / (data.domframes[f].duration + 1)) * (i + 1 - data.domframes[f].index);
+					//mat.b += ((data.domframes[f + 1].tweenMatrix.b - data.domframes[f].tweenMatrix.b) / (data.domframes[f].duration + 1)) * (i + 1 - data.domframes[f].index);
+					//mat.c += ((data.domframes[f + 1].tweenMatrix.c - data.domframes[f].tweenMatrix.c) / (data.domframes[f].duration + 1)) * (i + 1 - data.domframes[f].index);
+					//mat.d += ((data.domframes[f + 1].tweenMatrix.d - data.domframes[f].tweenMatrix.d) / (data.domframes[f].duration + 1)) * (i + 1 - data.domframes[f].index);
 					
 					//Ease Out
 					//trace(i, data.domframes[f].tweenMatrix.tx, mat.tx, EasingEquations.easeOutQuad(i, data.domframes[f].tweenMatrix.tx, mat.tx, data.domframes[f].duration));
@@ -106,25 +164,11 @@ package nid.xfl.core
 					//mat.c += ((data.domframes[f + 1].tweenMatrix.c - data.domframes[f].tweenMatrix.c) / data.domframes[f].duration ) * (i + 1 - data.domframes[f].index);
 					//mat.d += ((data.domframes[f + 1].tweenMatrix.d - data.domframes[f].tweenMatrix.d) / data.domframes[f].duration ) * (i + 1 - data.domframes[f].index);
 					
-					frame.matrix = mat;
-					
-					if (frame.hasColorTransform)
-					{
-						if (data.domframes[f + 1].color.alphaMultiplier == data.domframes[f].color.alphaMultiplier)
-						{
-							frame.colorTransform.alphaMultiplier = data.domframes[f].color.alphaMultiplier;
-						}
-						else 
-						{
-							frame.colorTransform.alphaMultiplier = ((data.domframes[f + 1].color.alphaMultiplier - data.domframes[f].color.alphaMultiplier) / data.domframes[f].duration ) * (i + 1 - data.domframes[f].index);
-						}
-						//trace('frame.colorTransform.alphaMultiplier:' + frame.colorTransform.alphaMultiplier);
-					}
 					
 				}
 				break;
 				
-				case TweenType.MOTION_OBJECT:
+				case TweenTypes.MOTION_OBJECT:
 				{
 					
 				}

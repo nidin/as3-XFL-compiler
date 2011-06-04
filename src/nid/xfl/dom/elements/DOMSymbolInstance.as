@@ -98,6 +98,7 @@ package nid.xfl.dom.elements
 			_matrix.d = String(data.matrix.Matrix.@d) == ""?1:data.matrix.Matrix.@d;
 			_matrix.tx = String(data.matrix.Matrix.@tx) == ""?0:data.matrix.Matrix.@tx;
 			_matrix.ty = String(data.matrix.Matrix.@ty) == ""?0:data.matrix.Matrix.@ty;
+			_matrix.transformPoint(new Point(centerPoint3DX, centerPoint3DY));
 			
 			/**
 			 * TODO: 3D TRANSFORMATION

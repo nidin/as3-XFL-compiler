@@ -15,6 +15,7 @@ package nid.xfl.dom
 	import nid.utils.Boolean2;
 	import nid.utils.Colors;
 	import nid.xfl.compiler.swf.data.consts.BitmapType;
+	import nid.xfl.XFLType;
 	/**
 	 * ...
 	 * @author Nidin P Vinayakan
@@ -90,14 +91,15 @@ package nid.xfl.dom
 			var loader:Loader = new Loader();
 				loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, loadbitmap_phase2);
 			
-			if (doc.TYPE == "ZIP")
+			if (doc.TYPE == XFLType.ZIP)
 			{
 				var img_data:ByteArray = doc.zipDoc.files[doc.NAME + '_' + name];
+				
 				if (img_data != null)
 				{
 					loader.contentLoaderInfo.addEventListener(Event.INIT, encodeImage);
 					loader.loadBytes(img_data);
-					trace('image ok');
+					//trace('image ok');
 				}
 				else
 				{
@@ -106,16 +108,15 @@ package nid.xfl.dom
 			}
 			else
 			{
-				trace('loadbitmap_phase1:' + doc.LIBRARY_PATH + name);
+				//trace('loadbitmap_phase1:' + doc.LIBRARY_PATH + name);
 				loader.contentLoaderInfo.addEventListener(Event.COMPLETE, encodeImage);
 				loader.load(new URLRequest(doc.LIBRARY_PATH + name));
 			}
 		}
 		internal function loadbitmap_phase2(e:IOErrorEvent):void
 		{
-			trace("error:" + e.toString());
-			return;
-			trace('loadbitmap_phase2');
+			//trace("error:" + e.toString());
+			//trace('loadbitmap_phase2');
 			var loader:URLLoader = new URLLoader();
 			loader.dataFormat = URLLoaderDataFormat.BINARY;
 			loader.addEventListener(Event.COMPLETE, onPhase2Complete);
@@ -133,7 +134,7 @@ package nid.xfl.dom
 		}
 		internal function loadbitmap_phase3(e:Event):void 
 		{
-			trace('dat file not supported');
+			//trace('dat file not supported');
 			return ;
 			
 			bitmapBytes.position = 0;
@@ -195,7 +196,7 @@ package nid.xfl.dom
 		}
 		private function encodeImage(e:Event):void 
 		{
-			trace('image loaded');
+			//trace('image loaded');
 			bitmap = new Bitmap(Bitmap(e.target.content).bitmapData);
 			
 			bitmapData = new ByteArray();
@@ -205,7 +206,7 @@ package nid.xfl.dom
 				bitmap.smoothing = true;
 				var jpeg2Encoder:JPEGEncoder = new JPEGEncoder();
 				bitmapData = jpeg2Encoder.encode(bitmap.bitmapData);
-				trace('JPEG DATA GENERATED');
+				//trace('JPEG DATA GENERATED');
 			}
 			else if (compressionType == "lossless")
 			{

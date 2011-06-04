@@ -1,5 +1,6 @@
 package nid.xfl.motion 
 {
+	import nid.utils.Boolean2;
 	/**
 	 * ...
 	 * @author Nidin P Vinayakan
@@ -12,9 +13,20 @@ package nid.xfl.motion
 		public var anchorPointB:String
 		public var isLine:Boolean
 		
-		public function MorphCurves() 
+		public function MorphCurves(data:XML=null) 
 		{
-			
+			if (data != null)
+			{
+				parse(data);
+			}
+		}
+		public function parse(data:XML):void
+		{
+			controlPointA 	= data.@controlPointA;
+			anchorPointA 	= data.@anchorPointA;
+			controlPointB 	= data.@controlPointB;
+			anchorPointB 	= data.@anchorPointB;
+			isLine 			= Boolean2.toBoolean(data.@isLine);
 		}
 		
 	}

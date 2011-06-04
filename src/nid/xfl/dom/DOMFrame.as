@@ -24,13 +24,13 @@ package nid.xfl.dom
 		 */
 		public var type:int;
 		public var motionObjectXML:MotionObjectXML;
+		public var morphShape:MorphShape;
 		public var index:int;
 		public var duration:int=0;
 		public var tweenType:String;
 		public var keyMode:int;
 		public var elements:Vector.<IElement>;
 		public var isEmptyFrame:Boolean;
-		public var isMotionFrame:Boolean;
 		public var motionTweenRotate:String;
 		public var motionTweenScale:Boolean;
 		public var motionTweenSnap:Boolean;
@@ -61,15 +61,21 @@ package nid.xfl.dom
 			duration 	= int(data.@duration);
 			keyMode  	= int(data.@keyMode);
 			tweenType 	= String(data.@tweenType);
+			acceleration = Number(data.@acceleration);
 			
 			motionTweenOrientToPath = Boolean2.toBoolean(data.@motionTweenOrientToPath);
 			motionTweenSync = Boolean2.toBoolean(data.@motionTweenSync);
 			motionTweenSnap = Boolean2.toBoolean(data.@motionTweenSnap);
+			hasCustomEase 	= Boolean2.toBoolean(data.@hasCustomEase);
 			
-			acceleration = Number(data.@acceleration);
-			
-			isMotionFrame = String(data.motionObjectXML) == ""?false:true;
-			motionObjectXML = new MotionObjectXML(data.motionObjectXML);
+			if (tweenType == TweenTypes.SHAPE)
+			{
+				morphShape = new MorphShape(data.MorphShape);
+			}
+			else if (tweenType ==  TweenTypes.MOTION_OBJECT)
+			{
+				motionObjectXML = new MotionObjectXML(data.motionObjectXML);
+			}
 			
 			tweens = new Tweens(data.tweens);
 			
@@ -112,6 +118,7 @@ package nid.xfl.dom
 						var domSymbol:DOMSymbolInstance = new DOMSymbolInstance(data.elements.*[i], doc);
 						elements.push(domSymbol);
 						tweenMatrix = domSymbol.matrix;
+						
 						color = domSymbol.color;
 					}
 					else if (data.elements.*[i].toXMLString().indexOf("DOMBitmapInstance") != -1)

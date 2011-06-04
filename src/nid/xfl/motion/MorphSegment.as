@@ -16,9 +16,28 @@ package nid.xfl.motion
 		
 		public var morphCurves:Vector.<MorphCurves>;
 		
-		public function MorphSegment() 
+		public function MorphSegment(data:XML=null) 
 		{
+			if (data != null)
+			{
+				parse(data);
+			}
+		}
+		public function parse(data:XML):void
+		{
+			startPointA 	= data.@startPointA;
+			startPointB 	= data.@startPointB;
+			strokeIndex1 	= data.@strokeIndex1;
+			strokeIndex2 	= data.@strokeIndex2;
+			fillIndex1 		= data.@fillIndex1;
+			fillIndex2 		= data.@fillIndex2;
 			
+			morphCurves = new Vector.<MorphCurves>();
+			
+			for (var i:int = 0; i < data.MorphCurves.length(); i++)
+			{
+				morphCurves.push(new MorphCurves(data.MorphCurves[i]));
+			}
 		}
 		
 	}

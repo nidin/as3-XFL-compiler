@@ -48,6 +48,7 @@ package
 			//xfleditor.load("template test/lossless image/lossless image.xfl");
 			//xfleditor.load("template test/swf_build_test0/swf_build_test0.xfl");
 			xfleditor.load("250x250/250x250.xfl");
+			//xfleditor.load("tween/tween.xfl");
 			//xfleditor.load("250x250/250x250.zip");
 			//xfleditor.load("336x280/336x280.xfl");
 			//xfleditor.load("template test/250x250-f1/250x250-f1.xfl");

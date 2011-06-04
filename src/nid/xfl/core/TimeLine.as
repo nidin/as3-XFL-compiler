@@ -31,6 +31,8 @@ package nid.xfl.core
 		public var depth:int = 0;
 		public var layers:Vector.<Layer>
 		public var stop:Boolean;
+		public var centerPoint3DX:Number;
+		public var centerPoint3DY:Number;
 		
 		public function TimeLine(data:DOMTimeline=null,refdoc:DOMDocument=null) 
 		{

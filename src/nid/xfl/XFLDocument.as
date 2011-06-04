@@ -33,7 +33,7 @@ package nid.xfl
 		public function load(loadReq:Object=null):void
 		{
 			NAME = "untitled";
-			TYPE = "URL";
+			TYPE = XFLType.URL;
 			loader = new URLLoader();
 			loader.addEventListener(IOErrorEvent.IO_ERROR, forwardIOError);
 			
@@ -84,8 +84,8 @@ package nid.xfl
 					/**
 					 * TODO: Add Publish Settings and Mobile Settings
 					 */
-					//publishSettings = new PublishSettings(publish_url);
-					//mobileSettings = new MobileSettings(mobile_url);
+					publishSettings = new PublishSettings(publish_url);
+					mobileSettings = new MobileSettings(mobile_url);
 				}
 			}
 			else if (loadReq is XML || loadReq is XMLList)
@@ -109,11 +109,12 @@ package nid.xfl
 		private function initZipFile(ba:ByteArray):void
 		{
 			trace('filetype: zip');
-			TYPE = "ZIP";
+			TYPE = XFLType.ZIP;
 			
 			zipDoc = null;
 			zipDoc = new ZIPDocument();
 			zipDoc.docName = NAME;
+			zipDoc.addEventListener(ProgressEvent.PROGRESS, forwardProgressEvent);
 			zipDoc.addEventListener(ZIPEvent.DECOMPRESSION_ERROR, setupZipFile);
 			zipDoc.addEventListener(ZIPEvent.DECOMPRESSED, setupZipFile);
 			zipDoc.load(ByteArray(ba));
@@ -126,9 +127,13 @@ package nid.xfl
 				return;
 			}
 			trace('decompressed successfully');
+			NAME = zipDoc.docName;
 			xflparse(XMLFormater.format(String(zipDoc.files[NAME + "_" + "DOMDocument.xml"])));
 			
+			setTimeout(function():void{
 			forwardComplete(new Event(Event.COMPLETE));
+			},2000);
+			
 		}
 		
 		private function InitParse(e:Event):void 
@@ -136,7 +141,7 @@ package nid.xfl
 			xflparse(XMLFormater.format(String(e.target.data)));
 			trace('completed');
 			setTimeout(function():void{
-			forwardComplete(e);
+			forwardComplete(new Event(Event.COMPLETE));
 			},2000);
 		}
 		

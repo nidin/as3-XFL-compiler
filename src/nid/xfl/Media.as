@@ -121,7 +121,6 @@ package nid.xfl
 		
 		public function isBitmapInLibrary(bitmapItem:DOMBitmapItem):Object
 		{
-			
 			for each(var _bitmap:DOMBitmapItem in bitmapLibrary)
 			{
 				if(_bitmap.name == bitmapItem.name)

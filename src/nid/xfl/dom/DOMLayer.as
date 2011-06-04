@@ -21,6 +21,7 @@ package nid.xfl.dom
 		public var color:uint;
 		public var current:Boolean;
 		public var isSelected:Boolean;
+		public var animationType:String;
 		public var domframes:Vector.<DOMFrame>;
 		//public var displayframes:Vector.<DisplayFrame>;
 		public var totalFrames:int = 0;
@@ -43,6 +44,7 @@ package nid.xfl.dom
 			color = uint(data.@color.replace("#","0x"));
 			current = Boolean2.toBoolean(data.@current);
 			isSelected = Boolean2.toBoolean(data.@isSelected);
+			animationType = data.@animationType;
 			
 			domframes = null;
 			domframes = new Vector.<DOMFrame>();

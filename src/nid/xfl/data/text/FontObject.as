@@ -89,7 +89,7 @@ package nid.xfl.data.text
 		}
 		public function load(onComplete:Function, onProgress:Function, onError:Function):void
 		{
-			trace('Loading Font:' + fontName);
+			//trace('Loading Font:' + fontName);
 			
 			var urlloader:URLLoader = new URLLoader();
 			urlloader.dataFormat = URLLoaderDataFormat.BINARY;
@@ -100,6 +100,7 @@ package nid.xfl.data.text
 			
 			function onInternalComplete(e:Event):void 
 			{
+				trace('font loaded:' + fontName);
 				urlloader.removeEventListener(IOErrorEvent.IO_ERROR, onError);
 				urlloader.removeEventListener(Event.COMPLETE, onInternalComplete);
 				urlloader.removeEventListener(ProgressEvent.PROGRESS, onProgress);
