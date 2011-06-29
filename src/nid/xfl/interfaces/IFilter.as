@@ -6,8 +6,7 @@ package nid.xfl.interfaces
 	 */
 	public interface IFilter 
 	{
-		
-		
+		function get type():String;
 	}
 
 }

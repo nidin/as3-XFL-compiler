@@ -78,9 +78,14 @@ package nid.xfl
 			abcGenerator 	= new AbcGenerator();
 			displayList 	= new Dictionary();
 			elementLibrary 	= new Dictionary();
+			tags = null;
+			tags = new Vector.<ITag>();
+			tagsRaw = null;
+			tagsRaw = new Vector.<SWFRawTag>();
 		}
 		public function build(_xflobj:XFLObject, _debug:Boolean = false):void
 		{
+			reset();
 			debug = _debug;
 			xflobj = _xflobj;
 			//xflobj.doc.DoABC = false;
@@ -107,6 +112,7 @@ package nid.xfl
 			bytes = null;
 			bytes = new ByteArray();
 			
+			data = null;
 			data = new SWFData();
 			
 			buildHeader(data);
@@ -152,7 +158,7 @@ package nid.xfl
 				if (property.scriptPool.script.length > 0)
 				property.frameScriptPool.push(property.scriptPool);
 				
-				if (DoABC)
+				if (DoABC && i == 0)
 				{
 					tags.push(ImportedAbcTag);
 					tags.push(ImportedSymbolClass);

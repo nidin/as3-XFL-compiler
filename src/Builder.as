@@ -7,6 +7,7 @@ package
 	import flash.events.MouseEvent;
 	import flash.events.ProgressEvent;
 	import flash.net.FileReference;
+	import flash.net.URLRequest;
 	import flash.text.TextField;
 	import flash.text.TextFormat;
 	import flash.utils.setTimeout;
@@ -15,6 +16,7 @@ package
 	import nid.xfl.compiler.swf.SWF;
 	import nid.xfl.editor.avm.AVMEnvironment;
 	import nid.xfl.events.XFLEvent;
+	import nid.xfl.utils.FontTable;
 	import nid.xfl.XFLCompiler;
 	import nid.xfl.XFLDocument;
 	import nid.xfl.core.XFLObject;
@@ -24,7 +26,7 @@ package
 	 * @author Nidin P Vinayakan
 	 */
 	
-	[SWF(backgroundColor = "#ffffff", frameRate = "30", quality = "HIGH", width = "800", height = "600")]
+	[SWF(backgroundColor = "#ffffff", frameRate = "30", quality = "HIGH", width = "550", height = "600")]
 	
 	public class Builder extends Sprite 
 	{
@@ -46,15 +48,43 @@ package
 		}
 		private function configUI(e:StatusEvent):void 
 		{
-			trace(e.type);
+			FontTable.fontDir = this.loaderInfo.parameters.fontDir;
+			
 			ui.select_xfl.addEventListener(MouseEvent.CLICK, browse);
 			ui.select_swf.addEventListener(MouseEvent.CLICK, browse);
 			ui.export.addEventListener(MouseEvent.CLICK, exportSWF);
 			ui.dump.addEventListener(MouseEvent.CLICK, dumpSWF);
 			ui.clear.addEventListener(MouseEvent.CLICK, clearConsole);
+			ui.loadSample.addEventListener(MouseEvent.CLICK, loadSampleXFL);
+			ui.downloadSample.addEventListener(MouseEvent.CLICK, downloadSampleXFL);
 			
 			compiler = new XFLCompiler();
 			compiler.addEventListener(XFLEvent.SWF_EXPORTED, saveSWF);
+		}
+		
+		private function downloadSampleXFL(e:MouseEvent):void 
+		{
+			if (this.loaderInfo.parameters.sample != undefined)
+			{
+				var fileref:FileReference = new FileReference();
+				fileref.download(new URLRequest(this.loaderInfo.parameters.sample), 'sample.xfl.zip');
+			}
+			else
+			{
+				log('sample not defined\n');
+			}
+		}
+		
+		private function loadSampleXFL(e:MouseEvent):void 
+		{
+			if (this.loaderInfo.parameters.sample != undefined)
+			{
+				load(this.loaderInfo.parameters.sample);
+			}
+			else
+			{
+				log('sample not defined\n');
+			}
 		}
 		
 		private function dumpSWF(e:MouseEvent):void 
@@ -65,7 +95,7 @@ package
 			}
 			else if (fileType == "swf")
 			{
-				ui.skin.console.text = swf.toString();
+				log(swf.toString());
 			}
 		}
 		
@@ -126,7 +156,7 @@ package
 		{
 			if (dump)
 			{
-				ui.skin.console.text = compiler.dumpString;
+				log(compiler.dumpString);
 			}
 			else 
 			{
@@ -142,7 +172,7 @@ package
 		}
 		public function load(file:Object):void
 		{
-			ui.skin.console.text += "XFL loading\n";
+			log("XFL loading\n");
 			xflFile = new XFLDocument();
 			xflFile.addEventListener(ProgressEvent.PROGRESS, onProgress);
 			xflFile.addEventListener(Event.COMPLETE, loadFonts);
@@ -152,7 +182,7 @@ package
 		private function loadFonts(e:Event):void 
 		{
 			trace("Loading Fonts");
-			ui.skin.console.text += "Font loading\n";
+			log("Font loading\n");
 			setTimeout(function():void{
 			FontFactory.loadFonts(onComplete, onFontProgress,onIOError);
 			},1000);
@@ -161,7 +191,7 @@ package
 		private function onIOError(e:IOErrorEvent):void 
 		{
 			trace("Font Load Error:" + e.text);
-			ui.skin.console.text += "Font load error\n";
+			log("Font load error\n");
 		}
 		
 		private function onFontProgress(e:ProgressEvent):void 
@@ -176,7 +206,7 @@ package
 		private function onComplete(e:Event):void 
 		{
 			trace('xfl loaded');
-			ui.skin.console.text += "XFL Loaded\n";
+			log("XFL Loaded\n");
 			setTimeout(createXFLObject,1000);
 		}
 		
@@ -184,11 +214,14 @@ package
 		{
 			xflObject = new XFLObject();
 			xflObject.make(xflFile);
-			ui.skin.console.text += "Ready\n";
+			log("Ready\n");
 			dispatchEvent(new XFLEvent(XFLEvent.READY));
 			isReady = true;
 		}
-		
+		public function log(value:String):void
+		{
+			ui.skin.console.text += value;
+		}
 	}
 
 }

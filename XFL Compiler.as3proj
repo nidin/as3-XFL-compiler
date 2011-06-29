@@ -6,8 +6,8 @@
     <movie input="" />
     <movie path="bin\XFLCompiler.swf" />
     <movie fps="30" />
-    <movie width="800" />
-    <movie height="800" />
+    <movie width="550" />
+    <movie height="400" />
     <movie version="11" />
     <movie background="#333333" />
   </output>
@@ -70,7 +70,7 @@
   </library>
   <!-- Class files to compile (other referenced classes will automatically be included) -->
   <compileTargets>
-    <compile path="src\Main.as" />
+    <compile path="src\Builder.as" />
   </compileTargets>
   <!-- Paths to exclude from the Project Explorer tree -->
   <hiddenPaths>

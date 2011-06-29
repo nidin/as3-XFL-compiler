@@ -1,6 +1,5 @@
 package  
 {
-	import fl.controls.TextInput;
 	import flash.display.DisplayObject;
 	import flash.display.Loader;
 	import flash.display.LoaderInfo;
@@ -29,6 +28,8 @@ package
 		public function get export():DisplayObject { return skin.getChildByName("export"); }
 		public function get dump():DisplayObject { return skin.getChildByName("dump"); }
 		public function get clear():DisplayObject { return skin.getChildByName("clear"); }
+		public function get loadSample():DisplayObject { return skin.getChildByName("load_sample"); }
+		public function get downloadSample():DisplayObject { return skin.getChildByName("download_sample"); }
 		
 		public function UI()
 		{

@@ -45,6 +45,17 @@ package nid.xfl.dom
 		public var tweens:Tweens;
 		public var actionscript:Actionscript;
 		
+		/**
+		 * Access to the transformation properties if the frame is Tween type
+		 */
+		public function get transformationPoint():Point { return DOMSymbolInstance(elements[0]).transformationPoint; }
+		public function get centerPoint3DX():Number { return DOMSymbolInstance(elements[0]).centerPoint3DX; }
+		public function get centerPoint3DY():Number { return DOMSymbolInstance(elements[0]).centerPoint3DY; }
+		public function get centerPoint3DZ():Number { return DOMSymbolInstance(elements[0]).centerPoint3DZ; }
+		
+		public function get filter():Vector.<IFilter> { return DOMSymbolInstance(elements[0])._filters; }
+		
+		
 		public function DOMFrame(data:XML = null, refdoc:DOMDocument = null)
 		{	
 			doc = refdoc;

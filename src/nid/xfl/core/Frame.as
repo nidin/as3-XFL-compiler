@@ -13,8 +13,9 @@ package nid.xfl.core
 	import nid.xfl.dom.*;
 	import nid.xfl.dom.elements.*;
 	import nid.xfl.interfaces.*;
-	import nid.xfl.utils.Clone;
+	import nid.xfl.utils.CloneUtils;
 	import nid.xfl.utils.Convertor;
+	import nid.xfl.utils.FilterUtils;
 	import nid.xfl.XFLCompiler;
 	/**
 	 * ...
@@ -27,6 +28,7 @@ package nid.xfl.core
 		public var elements:Vector.<FrameElement>;
 		public var rawElements:Vector.<IElement>;
 		public var matrix:Matrix;
+		public var _filters:Vector.<IFilter>;
 		public var hasColorTransform:Boolean;
 		public var colorTransform:ColorTransform;
 		public var stop:Boolean;
@@ -68,13 +70,13 @@ package nid.xfl.core
 				addChild(element);
 				elements.push(element);
 				matrix = element.matrix;
+				_filters = element._filters;
 				
 				if (data.elements[e].color != null)
 				{
 					hasColorTransform = true;
 					colorTransform.alphaMultiplier = data.elements[e].color.alphaMultiplier;
 				}
-				
 				//trace(element.type);
 			}
 		}
@@ -97,9 +99,16 @@ package nid.xfl.core
 					if (tweenType == "")
 					{
 						matrix = elements[e].matrix;
+						_filters = elements[e]._filters;
 					}
 					
 					elements[e].display.transform.matrix = matrix;
+					
+					if (_filters != null)
+					{
+						elements[e].display.filters = FilterUtils.convert(_filters);
+					}
+					
 					
 					if (hasColorTransform)
 					{
@@ -140,8 +149,9 @@ package nid.xfl.core
 			var frame:Frame 			= new Frame();
 				frame.isEndFrame 		= end;
 				frame.matrix 			= matrix.clone();
+				frame._filters 			= CloneUtils.cloneFilters(_filters);
 				frame.hasColorTransform = hasColorTransform;
-				frame.colorTransform 	= Clone.colorTransform(colorTransform);
+				frame.colorTransform 	= CloneUtils.colorTransform(colorTransform);
 				frame.elements 			= elements;
 				frame.rawElements 		= rawElements;
 				frame.tweenType 		= tweenType;
@@ -293,7 +303,12 @@ package nid.xfl.core
 									* Definition New tag
 									*/
 									rawElements[i].publish(tags, property);
-									
+									if (rawElements[i] is DOMSymbolInstance && DOMSymbolInstance(rawElements[i]).instanceName != "")
+									{
+										placeObject.hasName = true;
+										placeObject.instanceName = DOMSymbolInstance(rawElements[i]).instanceName;
+										trace('instanceName:'+placeObject.instanceName);
+									}
 									if (isButton)
 									{
 										trace(rawElements[i]);

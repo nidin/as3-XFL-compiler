@@ -8,6 +8,8 @@ package nid.xfl.data.filters
 	public class GradientBevelFilter implements IFilter 
 	{
 		
+		public function get type():String { return 'GradientBevelFilter'; }
+		
 		public function GradientBevelFilter(data:XML=null) 
 		{			
 			if (data != null)

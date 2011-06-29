@@ -2,6 +2,7 @@ package nid.xfl.core
 {
 	import flash.display.Sprite;
 	import flash.events.TimerEvent;
+	import flash.geom.Matrix;
 	import flash.utils.Timer;
 	import nid.xfl.compiler.mediator.ScriptPool;
 	import nid.xfl.compiler.swf.data.SWFSymbol;
@@ -12,6 +13,7 @@ package nid.xfl.core
 	import nid.xfl.dom.DOMTimeline;
 	import nid.xfl.dom.elements.DOMSymbolInstance;
 	import nid.xfl.editor.avm.AVMEnvironment;
+	import nid.xfl.interfaces.IFilter;
 	import nid.xfl.XFLCompiler;
 	import nid.xfl.XFLDocument;
 	/**
@@ -31,8 +33,11 @@ package nid.xfl.core
 		public var depth:int = 0;
 		public var layers:Vector.<Layer>
 		public var stop:Boolean;
+		public var matrix:Matrix;
+		public var _filters:Vector.<IFilter>;
 		public var centerPoint3DX:Number;
 		public var centerPoint3DY:Number;
+		public var centerPoint3DZ:Number;
 		
 		public function TimeLine(data:DOMTimeline=null,refdoc:DOMDocument=null) 
 		{
@@ -69,7 +74,7 @@ package nid.xfl.core
 				
 				for (var j:int = 0; j < f_elements.length; j++)
 				{
-					//trace('element.display.name:[' + j + ']' + f_elements[j].display.name);
+					trace('element.display.name:[' + j + ']' + f_elements[j].display.name);
 					
 					if (f_elements[j].isTimeline && f_elements[j].timeline.instanceName == tl_name)
 					{

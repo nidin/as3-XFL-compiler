@@ -56,11 +56,12 @@ package nid.xfl.dom.elements
 		public var centerPoint3DZ:Number;
 		
 		public var transformationPoint:Point;
-		public var _filters:Vector.<IFilter>
+		public var _filters:Vector.<IFilter>;
 		public var symbolItem:DOMSymbolItem;
 		public var timeline:TimeLine;
 		public var button:Button2;
 		public var qName:String;
+		public var instanceName:String;
 		
 		public function DOMSymbolInstance(data:XML,refdoc:DOMDocument) 
 		{	
@@ -74,7 +75,7 @@ package nid.xfl.dom.elements
 		public function parse(data:XML):void
 		{
 			
-			name 			= data.@name;
+			instanceName 	= String(data.@name);
 			symbolType 		= data.@symbolType;
 			libraryItemName = data.@libraryItemName;
 			centerPoint3DX 	= data.@centerPoint3DX;
@@ -239,6 +240,7 @@ package nid.xfl.dom.elements
 			{
 				button.construct(symbolItem);
 				button.instanceName 	= name;
+				button._filters 		= _filters;
 				button.transform.matrix = matrix;
 				return button;
 			}
@@ -246,7 +248,11 @@ package nid.xfl.dom.elements
 			{
 				timeline.construct(symbolItem);
 				timeline.instanceName 	  = name;
-				timeline.transform.matrix = matrix;
+				timeline._filters 		  = _filters;
+				timeline.matrix 		  = matrix;
+				timeline.centerPoint3DX   = centerPoint3DX; 
+				timeline.centerPoint3DY   = centerPoint3DY; 
+				timeline.centerPoint3DZ   = centerPoint3DZ; 
 				return timeline;
 			}
 			

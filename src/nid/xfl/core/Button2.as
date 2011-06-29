@@ -12,6 +12,7 @@ package nid.xfl.core
 	import nid.xfl.compiler.swf.tags.TagShowFrame;
 	import nid.xfl.dom.DOMDocument;
 	import nid.xfl.dom.DOMTimeline;
+	import nid.xfl.interfaces.IFilter;
 	
 	/**
 	 * ...
@@ -26,6 +27,7 @@ package nid.xfl.core
 		public var currentFrame:int = 0;
 		public var depth:int = 0;
 		public var layers:Vector.<Layer>
+		public var _filters:Vector.<IFilter>;
 		public var stop:Boolean;
 		public var currentState:String = "up";
 		

@@ -19,6 +19,8 @@ package nid.xfl.data.filters
 		public var quality:int;
 		public var strength:Number;
 		
+		public function get type():String { return 'DropShadowFilter'; }
+		
 		public function DropShadowFilter(data:XML=null) 
 		{			
 			if (data != null)
@@ -28,16 +30,16 @@ package nid.xfl.data.filters
 		}
 		public function parse(data:XML):void
 		{
-			angle = data.@angle;
-			blurX = data.@blurX;
-			blurY = data.@blurY;
-			color = uint(data.@color.replace("#", "0x"));
-			distance = data.@distance;
-			hideObject = Boolean2.toBoolean(data.@hideObject);
-			inner = Boolean2.toBoolean(data.@inner);
-			knockout = Boolean2.toBoolean(data.@knockout);
-			quality = data.@quality;
-			strength = data.@strength;
+			angle 		= String(data.@angle) == ''?45:data.@angle;
+			blurX 		= String(data.@blurX) == ''?5:data.@blurX;
+			blurY 		= String(data.@blurY) == ''?5:data.@blurY;
+			color 		= String(data.@color) == ''?0x000000:uint(data.@color.replace("#", "0x"));
+			distance 	= String(data.@distance) == ''?5:data.@distance;
+			hideObject 	= Boolean2.toBoolean(data.@hideObject);
+			inner 		= Boolean2.toBoolean(data.@inner);
+			knockout 	= Boolean2.toBoolean(data.@knockout);
+			quality 	= String(data.@quality) == ''?1:data.@quality;
+			strength 	= String(data.@strength) ==''?100:data.@strength;
 		}
 		
 	}

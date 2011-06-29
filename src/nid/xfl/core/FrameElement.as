@@ -4,6 +4,7 @@ package nid.xfl.core
 	import flash.display.Sprite;
 	import flash.geom.Matrix;
 	import nid.xfl.core.TimeLine;
+	import nid.xfl.interfaces.IFilter;
 	/**
 	 * ...
 	 * @author Nidin P Vinayakan
@@ -12,6 +13,7 @@ package nid.xfl.core
 	{
 		public var characterId:int;
 		public var matrix:Matrix;
+		public var _filters:Vector.<IFilter>;
 		public var type:String = "none-timeline";
 		public var isTimeline:Boolean;
 		public var timeline:TimeLine;
@@ -23,7 +25,6 @@ package nid.xfl.core
 			if (obj == null) return ;
 			name = obj.name;
 			display = obj;
-			matrix 	= display.transform.matrix;
 			addChild(display);
 			
 			if (display is TimeLine)
@@ -31,19 +32,23 @@ package nid.xfl.core
 				type = "timeline";
 				isTimeline = true;
 				timeline = display as TimeLine;
+				matrix 	= timeline.matrix;
+				_filters = timeline._filters;
 			}
 			else if (display is Button2)
 			{
 				type = "button";
 				isTimeline = false;
 				button = display as Button2;
+				matrix 	= display.transform.matrix;
+				_filters = button._filters;
 			}
 			else
 			{
 				isTimeline = false;
+				matrix 	= display.transform.matrix;
 			}
 		}
-		
 		public function update(frame:Object=null):void
 		{
 			if (isTimeline)

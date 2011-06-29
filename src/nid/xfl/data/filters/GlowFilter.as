@@ -16,6 +16,8 @@ package nid.xfl.data.filters
 		public var quality:int;
 		public var strength:Number;
 		
+		public function get type():String { return 'GlowFilter'; }
+		
 		public function GlowFilter(data:XML=null) 
 		{			
 			if (data != null)
@@ -25,13 +27,13 @@ package nid.xfl.data.filters
 		}
 		public function parse(data:XML):void
 		{
-			blurX = data.@blurX;
-			blurY = data.@blurY;
-			color = uint(data.@color.replace("#", "0x"));
-			inner = Boolean2.toBoolean(data.@inner);
-			knockout = Boolean2.toBoolean(data.@knockout);
-			quality = data.@quality;
-			strength = data.@strength;
+			blurX 		= String(data.@blurX) == ''?5:data.@blurX;
+			blurY 		= String(data.@blurY) == ''?5:data.@blurY;
+			color 		= String(data.@color) == ''?0xFF0000:uint(data.@color.replace("#", "0x"));
+			inner 		= Boolean2.toBoolean(data.@inner);
+			knockout 	= Boolean2.toBoolean(data.@knockout);
+			quality 	= String(data.@quality) == ''?1:data.@quality;
+			strength 	= String(data.@strength) ==''?100:data.@strength;
 		}
 		
 	}

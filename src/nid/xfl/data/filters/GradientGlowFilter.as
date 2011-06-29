@@ -8,6 +8,8 @@ package nid.xfl.data.filters
 	public class GradientGlowFilter implements IFilter 
 	{
 		
+		public function get type():String { return 'GradientGlowFilter'; }
+		
 		public function GradientGlowFilter(data:XML=null) 
 		{			
 			if (data != null)

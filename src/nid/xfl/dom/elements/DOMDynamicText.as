@@ -5,10 +5,15 @@ package nid.xfl.dom.elements
 	import flash.text.*;
 	import nid.utils.*;
 	import nid.xfl.compiler.factory.ElementFactory;
+	import nid.xfl.compiler.factory.FontFactory;
+	import nid.xfl.compiler.swf.data.SWFMatrix;
+	import nid.xfl.compiler.swf.data.SWFRectangle;
+	import nid.xfl.compiler.swf.data.SWFTextRecord;
 	import nid.xfl.compiler.swf.tags.*;
 	import nid.xfl.data.display.Color;
 	import nid.xfl.dom.*;
 	import nid.xfl.interfaces.*;
+	import nid.xfl.XFLCompiler;
 	/**
 	 * ...
 	 * @author Nidin P Vinayakan
@@ -77,9 +82,85 @@ package nid.xfl.dom.elements
 				textRuns.push(new DOMTextRun(data.textRuns.DOMTextRun[i]));
 			}
 		}
-		public function publish(tags:Vector.<ITag>, property:Object):void
+		public function publish(tags:Vector.<ITag>,  property:Object):void
 		{
+			var recordLength:int = 0;
+			var defineText:TagDefineEditText = new TagDefineEditText();
 			
+			var textBounds:SWFRectangle = new SWFRectangle();
+				textBounds.xmin = 0
+				textBounds.xmax = width * 20;
+				textBounds.ymin = 0
+				textBounds.ymax = height * 20;
+			defineText.bounds = textBounds;
+			
+			/**
+			 *  Setup text records
+			 */
+			property.yOffset 		= 0;
+			var newLine:Boolean 	= true;
+			var nextLine:Boolean 	= false;
+			var tWidth:int 			= 0;
+			var tHeight:int 		= 0;
+			var index:int 		= 0;
+			var initialText:String;
+			
+			for (var i:int = 0; i < textRuns.length; i++)
+			{
+				var textLines:Array = textRuns[i].characters.split("%n%");
+				
+				for (var j:int = 0; j < textLines.length; j++)
+				{
+					if (textLines[j].length != 0) // find if the current line string is empty or not if empty next record will be a new line
+					{
+						
+						initialText += '<p align="' + textRuns[i].textAttrs.alignment + '">' +
+									'<font face="' + textRuns[i].textAttrs.face + 
+										'" size="' + textRuns[i].textAttrs.size + 
+										'" letterSpacing="' + textRuns[i].textAttrs.lineSpacing + 
+										'" kerning="1'+ 
+										'" color="' + textRuns[i].textAttrs.fillColor + '">';
+						initialText += textLines[j];
+						initialText += '</font></p>';
+						
+						/**
+						 * Set font
+						 */
+						if (!FontFactory.isFontDefined(textRuns[i].textAttrs.face))
+						{
+							//FontFactory.defineFont(textRuns[i].textAttrs.face, tags);
+							//property.characterId 	= XFLCompiler.characterId;
+						}
+						
+						index++;
+					}
+					else
+					{
+						nextLine = true;
+					}
+				}
+				
+			}
+			//trace('----textRecords----');
+			//trace(textRecords);
+			/**
+			 * End text record setup
+			 */
+			//fixOffset();
+			
+			defineText.initialText = initialText;
+			defineText.characterId 	= property.characterId;
+			
+			tags.push(defineText);
+			
+			var CSMTextSettings:TagCSMTextSettings = new TagCSMTextSettings();
+				CSMTextSettings.textId 			= defineText.characterId;
+				CSMTextSettings.useFlashType 	= 1;
+				CSMTextSettings.gridFit 		= 2;
+				CSMTextSettings.thickness 		= 0;
+				CSMTextSettings.sharpness 		= 0;
+				
+			//tags.push(CSMTextSettings);
 		}
 		public function createDisplay():DisplayObject
 		{

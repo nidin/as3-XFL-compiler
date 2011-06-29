@@ -7,6 +7,7 @@ package nid.xfl.data.filters
 	 */
 	public class AdjustColorFilter implements IFilter 
 	{
+		public function get type():String { return 'AdjustColorFilter'; }
 		
 		public function AdjustColorFilter(data:XML=null) 
 		{			

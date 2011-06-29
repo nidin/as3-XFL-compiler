@@ -11,6 +11,8 @@ package nid.xfl.data.filters
 		public var blurY:Number;
 		public var quality:int;
 		
+		public function get type():String { return 'BlurFilter'; }
+		
 		public function BlurFilter(data:XML=null) 
 		{			
 			if (data != null)
@@ -20,9 +22,9 @@ package nid.xfl.data.filters
 		}
 		public function parse(data:XML):void
 		{
-			blurX = data.@blurX;
-			blurY = data.@blurY;
-			quality = data.@quality;
+			blurX 	= String(data.@blurX) == ''?5:data.@blurX;
+			blurY 	= String(data.@blurY) == ''?5:data.@blurY;
+			quality = String(data.@quality) == ''?1:data.@quality;
 		}
 		
 	}
