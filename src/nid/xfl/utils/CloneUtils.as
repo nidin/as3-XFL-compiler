@@ -1,7 +1,7 @@
 package nid.xfl.utils 
 {
 	import flash.geom.ColorTransform;
-	import nid.xfl.interfaces.IFilter;
+	import nid.xfl.interfaces.IXFilter;
 	/**
 	 * ...
 	 * @author Nidin P Vinayakan
@@ -37,18 +37,6 @@ package nid.xfl.utils
 			
 			return op;
 		}
-		static public function cloneFilters(src:Vector.<IFilter>):Vector.<IFilter>
-		{
-			var op:Vector.<IFilter> = new Vector.<IFilter>();
-			
-			for (var i:int = 0; i < src.length; i++)
-			{
-				op.push(src[i]);
-			}
-			
-			return op;
-		}
-		
 	}
 
 }

@@ -6,11 +6,11 @@ package nid.xfl.motion
 	import flash.geom.Point;
 	import nid.geom.DMatrix;
 	import nid.utils.MatrixConvertor;
-	import nid.xfl.data.filters.BlurFilter;
-	import nid.xfl.data.filters.DropShadowFilter;
+	import nid.xfl.data.filters.XFilterBlur;
+	import nid.xfl.data.filters.XFilterDropShadow;
 	import nid.xfl.data.filters.FilterList;
-	import nid.xfl.data.filters.GlowFilter;
-	import nid.xfl.interfaces.IFilter;
+	import nid.xfl.data.filters.XFilterGlow;
+	import nid.xfl.interfaces.IXFilter;
 	/**
 	 * ...
 	 * @author Nidin P Vinayakan
@@ -111,7 +111,7 @@ package nid.xfl.motion
 			
 			return mat;
 		}
-		public static function easeFilters(t:Number, bftrs:Vector.<IFilter>, iftrs:Vector.<IFilter>, d:Number, a:Number):Vector.<IFilter>
+		public static function easeFilters(t:Number, bftrs:Vector.<IXFilter>, iftrs:Vector.<IXFilter>, d:Number, a:Number):Vector.<IXFilter>
 		{
 			var easeFn:Function;
 			
@@ -128,7 +128,7 @@ package nid.xfl.motion
 				easeFn =  easeNone;
 			}
 			
-			var filters:Vector.<IFilter> = new Vector.<IFilter>();
+			var filters:Vector.<IXFilter> = new Vector.<IXFilter>();
 			
 			var bblurX:Number;
 			var bblurY:Number;
@@ -153,15 +153,15 @@ package nid.xfl.motion
 					
 					case FilterList.BLUR_FILTER:
 					{
-						var blurfltr:BlurFilter = new BlurFilter();
+						var blurfltr:XFilterBlur = new XFilterBlur();
 						
-						bblurX 		= BlurFilter(bftrs[i]).blurX;
-						bblurY		= BlurFilter(bftrs[i]).blurY;
-						bQuality	= BlurFilter(bftrs[i]).quality;
+						bblurX 		= XFilterBlur(bftrs[i]).blurX;
+						bblurY		= XFilterBlur(bftrs[i]).blurY;
+						bQuality	= XFilterBlur(bftrs[i]).quality;
 						
-						cblurX		= BlurFilter(iftrs[i]).blurX - BlurFilter(bftrs[i]).blurX;
-						cblurY		= BlurFilter(iftrs[i]).blurY - BlurFilter(bftrs[i]).blurY;
-						cQuality	= BlurFilter(iftrs[i]).quality - BlurFilter(bftrs[i]).quality;
+						cblurX		= XFilterBlur(iftrs[i]).blurX - XFilterBlur(bftrs[i]).blurX;
+						cblurY		= XFilterBlur(iftrs[i]).blurY - XFilterBlur(bftrs[i]).blurY;
+						cQuality	= XFilterBlur(iftrs[i]).quality - XFilterBlur(bftrs[i]).quality;
 						
 						blurfltr.blurX 		= easeFn(t, bblurX, cblurX, d);
 						blurfltr.blurY 		= easeFn(t, bblurY, cblurY, d);
@@ -173,23 +173,23 @@ package nid.xfl.motion
 					
 					case FilterList.DROP_SHADOW_FILTER:
 					{
-						var dropshadowfltr:DropShadowFilter = new DropShadowFilter();
+						var dropshadowfltr:XFilterDropShadow = new XFilterDropShadow();
 						
-						bblurX 		= DropShadowFilter(bftrs[i]).blurX;
-						bblurY		= DropShadowFilter(bftrs[i]).blurY;
-						bColor		= DropShadowFilter(bftrs[i]).color;
-						bQuality	= DropShadowFilter(bftrs[i]).quality;
-						bAngle		= DropShadowFilter(bftrs[i]).angle;
-						bDistance	= DropShadowFilter(bftrs[i]).distance;
-						bStrength	= DropShadowFilter(bftrs[i]).strength;
+						bblurX 		= XFilterDropShadow(bftrs[i]).blurX;
+						bblurY		= XFilterDropShadow(bftrs[i]).blurY;
+						bColor		= XFilterDropShadow(bftrs[i]).color;
+						bQuality	= XFilterDropShadow(bftrs[i]).quality;
+						bAngle		= XFilterDropShadow(bftrs[i]).angle;
+						bDistance	= XFilterDropShadow(bftrs[i]).distance;
+						bStrength	= XFilterDropShadow(bftrs[i]).strength;
 						
-						cblurX		= DropShadowFilter(iftrs[i]).blurX - DropShadowFilter(bftrs[i]).blurX;
-						cblurY		= DropShadowFilter(iftrs[i]).blurY - DropShadowFilter(bftrs[i]).blurY;
-						cColor		= DropShadowFilter(iftrs[i]).blurY - DropShadowFilter(bftrs[i]).color;
-						cQuality	= DropShadowFilter(iftrs[i]).quality - DropShadowFilter(bftrs[i]).quality;
-						cAngle		= DropShadowFilter(iftrs[i]).angle - DropShadowFilter(bftrs[i]).angle;
-						cDistance	= DropShadowFilter(iftrs[i]).distance - DropShadowFilter(bftrs[i]).distance;
-						cStrength	= DropShadowFilter(iftrs[i]).strength - DropShadowFilter(bftrs[i]).strength;
+						cblurX		= XFilterDropShadow(iftrs[i]).blurX - XFilterDropShadow(bftrs[i]).blurX;
+						cblurY		= XFilterDropShadow(iftrs[i]).blurY - XFilterDropShadow(bftrs[i]).blurY;
+						cColor		= XFilterDropShadow(iftrs[i]).blurY - XFilterDropShadow(bftrs[i]).color;
+						cQuality	= XFilterDropShadow(iftrs[i]).quality - XFilterDropShadow(bftrs[i]).quality;
+						cAngle		= XFilterDropShadow(iftrs[i]).angle - XFilterDropShadow(bftrs[i]).angle;
+						cDistance	= XFilterDropShadow(iftrs[i]).distance - XFilterDropShadow(bftrs[i]).distance;
+						cStrength	= XFilterDropShadow(iftrs[i]).strength - XFilterDropShadow(bftrs[i]).strength;
 						
 						dropshadowfltr.blurX 	= easeFn(t, bblurX, cblurX, d);
 						dropshadowfltr.blurY 	= easeFn(t, bblurY, cblurY, d);
@@ -203,9 +203,9 @@ package nid.xfl.motion
 						 */
 						dropshadowfltr.color = bColor;
 						
-						dropshadowfltr.inner 		= DropShadowFilter(bftrs[i]).inner;
-						dropshadowfltr.knockout 	= DropShadowFilter(bftrs[i]).knockout;
-						dropshadowfltr.hideObject 	= DropShadowFilter(bftrs[i]).hideObject;
+						dropshadowfltr.inner 		= XFilterDropShadow(bftrs[i]).inner;
+						dropshadowfltr.knockout 	= XFilterDropShadow(bftrs[i]).knockout;
+						dropshadowfltr.hideObject 	= XFilterDropShadow(bftrs[i]).hideObject;
 						
 						filters.push(dropshadowfltr);
 					}
@@ -213,19 +213,19 @@ package nid.xfl.motion
 					
 					case FilterList.GLOW_FILTER:
 					{
-						var glowfltr:GlowFilter = new GlowFilter();
+						var glowfltr:XFilterGlow = new XFilterGlow();
 						
-						bblurX 		= GlowFilter(bftrs[i]).blurX;
-						bblurY		= GlowFilter(bftrs[i]).blurY;
-						bColor		= GlowFilter(bftrs[i]).color;
-						bQuality	= GlowFilter(bftrs[i]).quality;
-						bStrength	= GlowFilter(bftrs[i]).strength;
+						bblurX 		= XFilterGlow(bftrs[i]).blurX;
+						bblurY		= XFilterGlow(bftrs[i]).blurY;
+						bColor		= XFilterGlow(bftrs[i]).color;
+						bQuality	= XFilterGlow(bftrs[i]).quality;
+						bStrength	= XFilterGlow(bftrs[i]).strength;
 						
-						cblurX		= GlowFilter(iftrs[i]).blurX - GlowFilter(bftrs[i]).blurX;
-						cblurY		= GlowFilter(iftrs[i]).blurY - GlowFilter(bftrs[i]).blurY;
-						cColor		= GlowFilter(iftrs[i]).blurY - GlowFilter(bftrs[i]).color;
-						cQuality	= GlowFilter(iftrs[i]).quality - GlowFilter(bftrs[i]).quality;
-						cStrength	= GlowFilter(iftrs[i]).strength - GlowFilter(bftrs[i]).strength;
+						cblurX		= XFilterGlow(iftrs[i]).blurX - XFilterGlow(bftrs[i]).blurX;
+						cblurY		= XFilterGlow(iftrs[i]).blurY - XFilterGlow(bftrs[i]).blurY;
+						cColor		= XFilterGlow(iftrs[i]).blurY - XFilterGlow(bftrs[i]).color;
+						cQuality	= XFilterGlow(iftrs[i]).quality - XFilterGlow(bftrs[i]).quality;
+						cStrength	= XFilterGlow(iftrs[i]).strength - XFilterGlow(bftrs[i]).strength;
 						
 						glowfltr.blurX 		= easeFn(t, bblurX, cblurX, d);
 						glowfltr.blurY 		= easeFn(t, bblurY, cblurY, d);
@@ -237,8 +237,8 @@ package nid.xfl.motion
 						 */
 						glowfltr.color = bColor;
 						
-						glowfltr.inner 		= GlowFilter(bftrs[i]).inner;
-						glowfltr.knockout 	= GlowFilter(bftrs[i]).knockout;
+						glowfltr.inner 		= XFilterGlow(bftrs[i]).inner;
+						glowfltr.knockout 	= XFilterGlow(bftrs[i]).knockout;
 						
 						filters.push(glowfltr);
 					}

@@ -56,7 +56,7 @@ package nid.xfl.dom.elements
 		public var centerPoint3DZ:Number;
 		
 		public var transformationPoint:Point;
-		public var _filters:Vector.<IFilter>;
+		public var _filters:Vector.<IXFilter>;
 		public var symbolItem:DOMSymbolItem;
 		public var timeline:TimeLine;
 		public var button:Button2;
@@ -115,37 +115,37 @@ package nid.xfl.dom.elements
 			
 			transformationPoint = new Point(data.transformationPoint.Point.@x, data.transformationPoint.Point.@y);
 			
-			_filters = new Vector.<IFilter>();
+			_filters = new Vector.<IXFilter>();
 			
 			for (var i:int = 0; i < data.filters.*.length(); i++)
 			{
 				if (data.filters.*[i].toXMLString().indexOf("BlurFilter") != -1)
 				{
-					_filters.push(new BlurFilter(data.filters.*[i]));
+					_filters.push(new XFilterBlur(data.filters.*[i]));
 				}
 				else if (data.filters.*[i].toXMLString().indexOf("DropShadowFilter") != -1)
 				{
-					_filters.push(new DropShadowFilter(data.filters.*[i]));
+					_filters.push(new XFilterDropShadow(data.filters.*[i]));
 				}
 				else if (data.filters.*[i].toXMLString().indexOf("GlowFilter") != -1)
 				{
-					_filters.push(new GlowFilter(data.filters.*[i]));
+					_filters.push(new XFilterGlow(data.filters.*[i]));
 				}
 				else if (data.filters.*[i].toXMLString().indexOf("BevelFilter") != -1)
 				{
-					_filters.push(new BevelFilter(data.filters.*[i]));
+					_filters.push(new XFilterBevel(data.filters.*[i]));
 				}
 				else if (data.filters.*[i].toXMLString().indexOf("GradientGlowFilter") != -1)
 				{
-					_filters.push(new GradientGlowFilter(data.filters.*[i]));
+					_filters.push(new XFilterGradientGlow(data.filters.*[i]));
 				}
 				else if (data.filters.*[i].toXMLString().indexOf("GradientBevelFilter") != -1)
 				{
-					_filters.push(new GradientBevelFilter(data.filters.*[i]));
+					_filters.push(new XFilterGradientBevel(data.filters.*[i]));
 				}
 				else if (data.filters.*[i].toXMLString().indexOf("AdjustColorFilter") != -1)
 				{
-					_filters.push(new AdjustColorFilter(data.filters.*[i]));
+					_filters.push(new XFilterAdjustColor(data.filters.*[i]));
 				}
 			}
 			

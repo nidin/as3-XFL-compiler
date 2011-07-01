@@ -4,7 +4,7 @@ package nid.xfl.core
 	import flash.display.Sprite;
 	import flash.geom.Matrix;
 	import nid.xfl.core.TimeLine;
-	import nid.xfl.interfaces.IFilter;
+	import nid.xfl.interfaces.IXFilter;
 	/**
 	 * ...
 	 * @author Nidin P Vinayakan
@@ -13,7 +13,7 @@ package nid.xfl.core
 	{
 		public var characterId:int;
 		public var matrix:Matrix;
-		public var _filters:Vector.<IFilter>;
+		public var _filters:Vector.<IXFilter>;
 		public var type:String = "none-timeline";
 		public var isTimeline:Boolean;
 		public var timeline:TimeLine;

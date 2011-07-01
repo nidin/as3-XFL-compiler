@@ -28,7 +28,8 @@ package nid.xfl.core
 		public var elements:Vector.<FrameElement>;
 		public var rawElements:Vector.<IElement>;
 		public var matrix:Matrix;
-		public var _filters:Vector.<IFilter>;
+		public var hasFilter:Boolean;
+		public var _filters:Vector.<IXFilter>;
 		public var hasColorTransform:Boolean;
 		public var colorTransform:ColorTransform;
 		public var stop:Boolean;
@@ -70,7 +71,15 @@ package nid.xfl.core
 				addChild(element);
 				elements.push(element);
 				matrix = element.matrix;
-				_filters = element._filters;
+				
+				
+				if (element._filters != null)
+				{
+					hasFilter = true;
+					_filters = element._filters;
+				}
+				
+				trace(_filters);
 				
 				if (data.elements[e].color != null)
 				{
@@ -106,7 +115,7 @@ package nid.xfl.core
 					
 					if (_filters != null)
 					{
-						elements[e].display.filters = FilterUtils.convert(_filters);
+						elements[e].display.filters = FilterUtils.convertToFlash(_filters);
 					}
 					
 					
@@ -149,7 +158,8 @@ package nid.xfl.core
 			var frame:Frame 			= new Frame();
 				frame.isEndFrame 		= end;
 				frame.matrix 			= matrix.clone();
-				frame._filters 			= CloneUtils.cloneFilters(_filters);
+				frame.hasFilter			= hasFilter;
+				frame._filters 			= FilterUtils.cloneXFilter(_filters);
 				frame.hasColorTransform = hasColorTransform;
 				frame.colorTransform 	= CloneUtils.colorTransform(colorTransform);
 				frame.elements 			= elements;
@@ -227,9 +237,24 @@ package nid.xfl.core
 					 */
 					if (!isEndFrame)
 					{
-						var placeObject:TagPlaceObject2 = new TagPlaceObject2();
-						var removeObject:TagRemoveObject2 = new TagRemoveObject2();
+						/**
+						 * TODO : implement place object 1 for performance 
+						 */
+						var placeObject:Object;
+						var removeObject:TagRemoveObject2;
 						
+						if (hasFilter)
+						{
+							placeObject = new TagPlaceObject3();
+							TagPlaceObject3(placeObject).hasFilterList = true;
+							removeObject = new TagRemoveObject2();
+							TagPlaceObject3(placeObject).surfaceFilterList = FilterUtils.convertToSWF(_filters);
+						}
+						else
+						{
+							placeObject = new TagPlaceObject2();
+							removeObject = new TagRemoveObject2();
+						}
 						
 						
 						if (tweenType == "")
@@ -293,8 +318,8 @@ package nid.xfl.core
 								if (result.exist)
 								{
 									property.characterId = result.element.characterId;
-									//trace('\t   exist in library');
-									//trace('\t 	  property.characterId:' + property.characterId);
+									//trace('\t exist in library');
+									//trace('\t property.characterId:' + property.characterId);
 								}
 								else
 								{

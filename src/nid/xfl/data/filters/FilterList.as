@@ -13,6 +13,7 @@ package nid.xfl.data.filters
 		static public const GLOW_FILTER:String 			 = "GlowFilter";
 		static public const GRADIENT_BEVEL_FILTER:String = "GradientBevelFilter";
 		static public const GRADIENT_GLOW_FILTER:String  = "GradientGlowFilter";
+		static public const CONVOLUTION_FILTER:String  	 = "ConvolutionFilter";
 	}
 
 }

@@ -8,7 +8,7 @@
 		public var blurY:Number;
 		public var passes:uint;
 		
-		public function FilterBlur(id:uint) {
+		public function FilterBlur(id:uint=0) {
 			super(id);
 		}
 		

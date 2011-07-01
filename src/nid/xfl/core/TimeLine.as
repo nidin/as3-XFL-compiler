@@ -13,7 +13,7 @@ package nid.xfl.core
 	import nid.xfl.dom.DOMTimeline;
 	import nid.xfl.dom.elements.DOMSymbolInstance;
 	import nid.xfl.editor.avm.AVMEnvironment;
-	import nid.xfl.interfaces.IFilter;
+	import nid.xfl.interfaces.IXFilter;
 	import nid.xfl.XFLCompiler;
 	import nid.xfl.XFLDocument;
 	/**
@@ -34,7 +34,7 @@ package nid.xfl.core
 		public var layers:Vector.<Layer>
 		public var stop:Boolean;
 		public var matrix:Matrix;
-		public var _filters:Vector.<IFilter>;
+		public var _filters:Vector.<IXFilter>;
 		public var centerPoint3DX:Number;
 		public var centerPoint3DY:Number;
 		public var centerPoint3DZ:Number;

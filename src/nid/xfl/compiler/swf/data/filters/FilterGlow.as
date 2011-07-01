@@ -14,7 +14,7 @@
 		public var compositeSource:Boolean;
 		public var passes:uint;
 		
-		public function FilterGlow(id:uint) {
+		public function FilterGlow(id:uint=0) {
 			super(id);
 		}
 		

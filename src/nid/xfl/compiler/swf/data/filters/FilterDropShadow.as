@@ -16,7 +16,7 @@
 		public var compositeSource:Boolean;
 		public var passes:uint;
 		
-		public function FilterDropShadow(id:uint) {
+		public function FilterDropShadow(id:uint=0) {
 			super(id);
 		}
 		

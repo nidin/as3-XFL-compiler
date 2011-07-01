@@ -12,7 +12,7 @@ package nid.xfl.core
 	import nid.xfl.dom.DOMFrame;
 	import nid.xfl.dom.DOMLayer;
 	import nid.xfl.dom.elements.DOMSymbolInstance;
-	import nid.xfl.interfaces.IFilter;
+	import nid.xfl.interfaces.IXFilter;
 	import nid.xfl.motion.EasingEquations;
 	import nid.xfl.motion.TweenTypes;
 	/**
@@ -116,12 +116,12 @@ package nid.xfl.core
 							var ccpy:Number = symbol.centerPoint3DY - bcpy;
 							var ccpz:Number = symbol.centerPoint3DZ - bcpz;
 							
-							var iftrs:Vector.<IFilter> = symbol._filters;
+							var iftrs:Vector.<IXFilter> = symbol._filters;
 						}
 						
 						if (data.domframes[f].elements[0] is DOMSymbolInstance)
 						{
-							var bftrs:Vector.<IFilter> = DOMSymbolInstance(data.domframes[f].elements[0])._filters;
+							var bftrs:Vector.<IXFilter> = DOMSymbolInstance(data.domframes[f].elements[0])._filters;
 						}
 						
 						var bmat:DMatrix  = MatrixConvertor.convert(data.domframes[f].tweenMatrix);
@@ -172,7 +172,8 @@ package nid.xfl.core
 						
 						if (iftrs != null)
 						{
-							frame._filters = EasingEquations.easeFilters(t, iftrs, bftrs, d, acc);
+							frame.hasFilter = true;
+							frame._filters = EasingEquations.easeFilters(t, bftrs, iftrs , d, acc);
 						}
 						
 					}

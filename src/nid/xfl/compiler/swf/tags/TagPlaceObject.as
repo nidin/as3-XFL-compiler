@@ -47,6 +47,7 @@
 		}
 		
 		public function get surfaceFilterList():Vector.<IFilter> { return _surfaceFilterList; }
+		public function set surfaceFilterList(value:Vector.<IFilter>):void { _surfaceFilterList = value; }
 		
 		public function parse(data:SWFData, length:uint, version:uint, async:Boolean = false):void {
 			var pos:uint = data.position;

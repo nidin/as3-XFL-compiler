@@ -53,7 +53,7 @@ package nid.xfl.dom
 		public function get centerPoint3DY():Number { return DOMSymbolInstance(elements[0]).centerPoint3DY; }
 		public function get centerPoint3DZ():Number { return DOMSymbolInstance(elements[0]).centerPoint3DZ; }
 		
-		public function get filter():Vector.<IFilter> { return DOMSymbolInstance(elements[0])._filters; }
+		public function get filter():Vector.<IXFilter> { return DOMSymbolInstance(elements[0])._filters; }
 		
 		
 		public function DOMFrame(data:XML = null, refdoc:DOMDocument = null)
