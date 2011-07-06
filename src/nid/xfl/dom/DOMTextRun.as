@@ -28,13 +28,23 @@ package nid.xfl.dom
 		}
 		public function parse(data:XML):void
 		{
-			characters = XML(data.characters).toString();
+			if (String(data.characters[0]).length == 0)
+			{
+				characters = " ";
+			}
+			else
+			{
+				characters = String(data.characters[0]);
+			}
+			
 			textAttrs = new DOMTextAttrs(XML(data.textAttrs.DOMTextAttrs));
 		}
 		public function appendText(txt:TextField):void
 		{
 			var begin:int = txt.length;
-			txt.appendText(characters.replace(/%n%/g, "\n"));
+			var chars:String = characters.replace(/%n%/g, "\n");
+			chars = chars.replace(/%s%/g, " ");
+			txt.appendText(chars);
 			if (begin < txt.length) txt.setTextFormat(textAttrs.getFormat(), begin, txt.length);
 		}
 		public function appendTextRecord(tags:Vector.<ITag>, property:Object, _newLine:Boolean = false, _begin:Boolean = false):Boolean

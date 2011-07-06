@@ -71,6 +71,7 @@
 				body.writeTEXTRECORD(_records[i], glyphBits, advanceBits, record, level);
 				record = _records[i];
 			}
+			trace('body.length:' + body.length);
 			body.writeUI8(0);
 			data.writeTagHeader(type, body.length);
 			data.writeBytes(body);

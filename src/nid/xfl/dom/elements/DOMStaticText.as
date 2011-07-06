@@ -49,6 +49,7 @@ package nid.xfl.dom.elements
 		public var displayText:TextField;
 		private var yOffset:int;
 		private var begin:Boolean;
+		private var firstLine:Boolean;
 		
 		public function DOMStaticText(data:XML=null) 
 		{
@@ -88,6 +89,10 @@ package nid.xfl.dom.elements
 				FontFactory.registerFont(textRuns[i].textAttrs.face,textRuns[i].characters);
 			}
 		}
+		
+		/**
+		 * Publish 
+		 */
 		public function publish(tags:Vector.<ITag>,  property:Object):void
 		{
 			var recordLength:int = 0;
@@ -110,32 +115,44 @@ package nid.xfl.dom.elements
 			property.yOffset 		= 0;
 			textRecords 			= new Vector.<SWFTextRecord>();
 			begin 					= true;
+			firstLine 				= true;
 			var newLine:Boolean 	= true;
 			var nextLine:Boolean 	= false;
 			var tWidth:int 			= 0;
 			var tHeight:int 		= 0;
-			var index:int 		= 0;
+			var index:int 			= 0;
+			var lineSpacing:Number	= 0;
 			var initialRecord:SWFTextRecord;
 			
 			for (var i:int = 0; i < textRuns.length; i++)
 			{
+				trace('textRuns['+i+']:'+textRuns[i].characters);
 				var textLines:Array = textRuns[i].characters.split("%n%");
+				
+				lineSpacing = textRuns[i].textAttrs.lineSpacing;
 				
 				for (var j:int = 0; j < textLines.length; j++)
 				{
-					if (textLines[j].length != 0) // find if the current line string is empty or not if empty next record will be a new line
+					/**
+					 * find if the current line string is empty or not,
+					 * if empty next record will be a new line
+					 */
+					
+					if (textLines[j].length != 0) 
 					{
 						var textRecord:SWFTextRecord = new SWFTextRecord();
 							textRecord.index = index;
 						/**
-						 * check whether the record is first record , new line record forwarded from previous record 
-						 * or length of line string is greater than 1 if greater than one this must be a new line record
+						 * check whether the record is first record , 
+						 * new line record forwarded from previous record 
+						 * or length of line string is greater than 1 
+						 * if greater than one this must be a new line record
 						 * */
 						if (begin || nextLine || (textLines.length > 1  && j > 0))
 						{
 							
-							updateInitialRecord(initialRecord, tWidth, tHeight, yOffset);
-							
+							updateInitialRecord(initialRecord, tWidth, tHeight, yOffset, lineSpacing);
+							trace('new line:', begin, nextLine, yOffset);
 							newLine 		= false;
 							nextLine 		= false;
 							tWidth			= 0;
@@ -168,11 +185,13 @@ package nid.xfl.dom.elements
 						textRecord.glyphEntries = FontFactory.glyphEntries(textRuns[i].textAttrs.face, textLines[j], textRuns[i].textAttrs.size);
 						
 						tWidth += FontFactory.glyphsWidth(textRecord.glyphEntries);
-						tHeight = tHeight < textRecord.textHeight?textRecord.textHeight:tHeight;
+						//tHeight = tHeight < textRecord.textHeight?textRecord.textHeight:tHeight;
+						tHeight = textRecord.textHeight;
 						
+						/* tested ok */
 						if ( i == textRuns.length - 1 && j == textLines.length - 1)
 						{
-							updateInitialRecord(initialRecord, tWidth, tHeight, yOffset);
+							updateInitialRecord(initialRecord, tWidth, tHeight, yOffset, lineSpacing);
 						}
 						
 						textRecords.push(textRecord);
@@ -184,11 +203,10 @@ package nid.xfl.dom.elements
 						
 						if ( i == textRuns.length - 1 && j == textLines.length - 1)
 						{
-							updateInitialRecord(initialRecord, tWidth, tHeight, yOffset);
+							updateInitialRecord(initialRecord, tWidth, tHeight, yOffset, lineSpacing);
 						}
 					}
 				}
-				
 			}
 			//trace('----textRecords----');
 			//trace(textRecords);
@@ -212,7 +230,7 @@ package nid.xfl.dom.elements
 			//tags.push(CSMTextSettings);
 		}
 		
-		private function updateInitialRecord(initialRecord:SWFTextRecord, tWidth:int, tHeight:int, _yOffset:int):void 
+		private function updateInitialRecord(initialRecord:SWFTextRecord, tWidth:int, tHeight:int, _yOffset:int, _lineSpacing:Number):void
 		{
 			if (initialRecord != null)
 			{
@@ -239,17 +257,20 @@ package nid.xfl.dom.elements
 					}
 					break;
 				}
-				
+				var ascent:Number = FontFactory.ascent(initialRecord.fontFace, tHeight) + _yOffset;
+				//trace('ascent:' + ascent);
 				//initialRecord.yOffset += tHeight + _yOffset;
 				initialRecord.hasYOffset = true;
-				initialRecord.yOffset += FontFactory.ascent(initialRecord.fontFace, tHeight) + _yOffset;
-				initialRecord.yOffset += begin?0:FontFactory.descent(initialRecord.fontFace, tHeight);
+				initialRecord.yOffset += ascent;
+				initialRecord.yOffset += firstLine?0:FontFactory.descent(initialRecord.fontFace, tHeight);
 				yOffset = initialRecord.yOffset;
+				
 				//trace('index :'+initialRecord.index,initialRecord);
 				textRecords[initialRecord.index] = initialRecord;
-				
-				begin = false;
+				firstLine = false;
 			}
+			if (yOffset > 0) yOffset += (_lineSpacing * 20);
+			begin = false;
 		}
 		
 		

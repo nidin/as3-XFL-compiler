@@ -81,11 +81,13 @@ package nid.xfl.data.text
 		}
 		public function ascent(fontSize:int):int
 		{
-			return Math.round((fontSWF.ascent / (1024 / (fontSize / 20))) / 20) * 20;
+			//return Math.round((fontSWF.ascent / (1024 / (fontSize / 20))) / 20) * 20;
+			return (fontSWF.ascent / (1024 / (fontSize / 20)) / 20) * 20;
 		}		
 		public function descent(fontSize:int):int
 		{
-			return Math.round((fontSWF.descent / (1024 / (fontSize / 20))) / 20) * 20;
+			//return Math.round((fontSWF.descent / (1024 / (fontSize / 20))) / 20) * 20;
+			return ((fontSWF.descent / (1024 / (fontSize / 20))) / 20) * 20;
 		}
 		public function load(onComplete:Function, onProgress:Function, onError:Function):void
 		{
@@ -135,6 +137,7 @@ package nid.xfl.data.text
 					{
 						glyphShapeTable.push(fontSWF.glyphShapeTable[j]);
 						fontAdvanceTable.push(fontSWF.fontAdvanceTable[j]);
+						if (fontSWF.fontKerningTable.length > 0)
 						fontKerningTable.push(fontSWF.fontKerningTable[j]);
 					}
 				}

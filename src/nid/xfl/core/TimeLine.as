@@ -145,12 +145,24 @@ package nid.xfl.core
 		}
 		public function scan():void
 		{
-			var property:Object = { depth:0 }
+			var property:Object = { depth:0 };
 			property.parent = "SubTimeline";
+			property.clipDepths = new Object();
 			
 			for (var l:int = 0; l < layers.length; l++)
 			{
-				layers[l].scan(property);
+				if (layers[l].hasParentLayer && !layers[(layers.length - 1) - layers[l].parentLayerIndex].isScaned)
+				{
+					layers[(layers.length - 1) - layers[l].parentLayerIndex].scan(property);
+				}
+				if (layers[l].layerType == "mask")
+				{
+					layers[l].clipDepth = property.clipDepths[(layers.length - 1) - l];
+				}
+				else
+				{
+					layers[l].scan(property);
+				}
 			}
 		}
 		public function publish(tags:Vector.<ITag>, property:Object, sub_tags:Vector.<ITag> = null):void
@@ -165,7 +177,14 @@ package nid.xfl.core
 				{
 					if (i < layers[l].frames.length && layers[l].frames[i] != null)
 					{
-						layers[l].publish(i, tags, property, sub_tags);
+						if (layers[l].hasParentLayer && !layers[(layers.length - 1) - layers[l].parentLayerIndex].isPublished)
+						{
+							layers[(layers.length - 1) - layers[l].parentLayerIndex].publish(i, tags, property, sub_tags);
+						}
+						if(layers[l].layerType != "mask")
+						{
+							layers[l].publish(i, tags, property, sub_tags);
+						}
 					}
 				}
 				

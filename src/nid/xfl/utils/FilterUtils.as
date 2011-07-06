@@ -182,6 +182,8 @@ package nid.xfl.utils
 		
 		public static function cloneXFilter(domfilters:Vector.<IXFilter>):Vector.<IXFilter>
 		{
+			if (domfilters == null) return null;
+			
 			var filters:Vector.<IXFilter> = new Vector.<IXFilter>();
 			
 			for (var i:int = 0; i <  domfilters.length; i++)

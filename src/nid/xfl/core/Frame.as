@@ -174,7 +174,7 @@ package nid.xfl.core
 		 * XFL SCAN SECTION
 		 * scan xfl object to create display depth model
 		 */
-		public function scan(property:Object):void
+		public function scan(property:Object, parentType:String = "normal"):void
 		{
 			if (!isClone && actionscript != null)
 			{
@@ -184,21 +184,22 @@ package nid.xfl.core
 			
 			if (!isEmptyFrame)
 			{
+				var length:int = parentType == "mask"?1:rawElements.length;
 				
-				for (var i:int = 0; i < rawElements.length; i++)
+				for (var i:int = 0; i < length; i++)
 				{
-					if (rawElements[i] is DOMSymbolInstance)
+					if (rawElements.length > 0 && rawElements[i] is DOMSymbolInstance)
 					{
 						DOMSymbolInstance(rawElements[i]).scan();
 					}
 				}
-				if (property.depth < rawElements.length) property.depth = rawElements.length;
+				if (property.depth < length) property.depth = length;
 			}
 		}
 		/**
 		 * SWF PUBLISH SECTION
 		 */
-		public function publish(tags:Vector.<ITag>, property:Object, sub_tags:Vector.<ITag> = null, isButton:Boolean = false, characters:Vector.<SWFButtonRecord> = null):void
+		public function publish(tags:Vector.<ITag>, property:Object, sub_tags:Vector.<ITag> = null, isButton:Boolean = false, characters:Vector.<SWFButtonRecord> = null, layerType:String = "", clipDepth:int = 0):void
 		{
 			/**
 			 * Publish frame data to swf tags
@@ -229,8 +230,9 @@ package nid.xfl.core
 			 */
 			if (!isEmptyFrame)
 			{
+				var length:int = layerType == "mask"?1:rawElements.length;
 				
-				for (var i:int = 0; i < rawElements.length; i++)
+				for (var i:int = 0; i < length; i++)
 				{
 					/**
 					 * If frame is not last frame build frame data
@@ -241,9 +243,9 @@ package nid.xfl.core
 						 * TODO : implement place object 1 for performance 
 						 */
 						var placeObject:Object;
-						var removeObject:TagRemoveObject2;
+						var removeObject:TagRemoveObject2;						
 						
-						if (hasFilter)
+						if (hasFilter && _filters.length > 0 && layerType != "mask")
 						{
 							placeObject = new TagPlaceObject3();
 							TagPlaceObject3(placeObject).hasFilterList = true;
@@ -254,6 +256,12 @@ package nid.xfl.core
 						{
 							placeObject = new TagPlaceObject2();
 							removeObject = new TagRemoveObject2();
+						}
+						
+						if (layerType == "mask")
+						{
+							TagPlaceObject2(placeObject).hasClipDepth 	= true;
+							TagPlaceObject2(placeObject).clipDepth 		= clipDepth;
 						}
 						
 						
@@ -271,7 +279,7 @@ package nid.xfl.core
 							//trace('\t 	property.characterId:' + property.characterId);
 							
 							if (isButton)
-							{						
+							{
 								var temp1:Dictionary = XFLCompiler.displayList;
 								var temp2:* = temp1[p_depth +'_' + depth];
 								

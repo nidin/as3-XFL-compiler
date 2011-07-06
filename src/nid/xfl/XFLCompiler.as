@@ -125,10 +125,29 @@ package nid.xfl
 		public function scan():void
 		{
 			var property:Object = { depth:0 }
+			property.clipDepths = new Object();
 			
-			for (var l:int = 0; l < xflobj.layers.length; l++)
+			//for (var l:int = 0; l < xflobj.layers.length; l++)
+			//{
+				//xflobj.layers[l].scan(property);
+			//}
+			with(xflobj)
 			{
-				xflobj.layers[l].scan(property);
+				for (var l:int = 0; l < layers.length; l++)
+				{
+					if (layers[l].hasParentLayer && !layers[(layers.length - 1) - layers[l].parentLayerIndex].isScaned)
+					{
+						layers[(layers.length - 1) - layers[l].parentLayerIndex].scan(property);
+					}
+					if (layers[l].layerType == "mask")
+					{
+						layers[l].clipDepth = property.clipDepths[(layers.length - 1) - l];
+					}
+					else
+					{
+						layers[l].scan(property);
+					}
+				}
 			}
 		}
 		public function buildSWFTags():void 
@@ -147,11 +166,22 @@ package nid.xfl
 				property.p_depth = "1";
 				property.scriptPool = new ScriptPool(i);
 				
-				for (var ln:int = 0; ln < xflobj.layers.length; ln++)
+				for (var l:int = 0; l < xflobj.layers.length; l++)
 				{
-					if (i < xflobj.layers[ln].frames.length && xflobj.layers[ln].frames[i] != null)
+					if (i < xflobj.layers[l].frames.length && xflobj.layers[l].frames[i] != null)
 					{
-						xflobj.layers[ln].publish(i, tags, property);
+						//xflobj.layers[l].publish(i, tags, property);
+						with (xflobj)
+						{
+							if (layers[l].hasParentLayer && !layers[(layers.length - 1) - layers[l].parentLayerIndex].isPublished)
+							{
+								layers[(layers.length - 1) - layers[l].parentLayerIndex].publish(i, tags, property);
+							}
+							if(layers[l].layerType != "mask")
+							{
+								layers[l].publish(i, tags, property);
+							}
+						}
 					}
 				}
 				
@@ -264,7 +294,7 @@ package nid.xfl
 			{
 				for (var i:int = 0; i < SymbolClass.symbols.length; i++)
 				{
-					var sName1:String = '_'+SymbolClass.symbols[i].name;
+					var sName1:String = classPrefix(property.docName) + SymbolClass.symbols[i].name;
 					
 					for (var j:int = 0; j < ImportedSymbolClass.symbols.length; j++)
 					{
@@ -286,7 +316,11 @@ package nid.xfl
 				}
 			}
 		}
-		
+		private function classPrefix(docName:String):String
+		{
+			if (String(Number(docName.charAt(0))) == "NaN") return '';
+			else return'_';
+		}
 		
 		private function buildABC():void 
 		{

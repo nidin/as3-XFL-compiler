@@ -19,11 +19,14 @@ package nid.xfl.dom
 		 */
 		public var name:String;
 		public var color:uint;
+		public var locked:Boolean;
 		public var current:Boolean;
 		public var isSelected:Boolean;
 		public var animationType:String;
+		public var layerType:String;
+		public var parentLayerIndex:int;
+		public var hasParentLayer:Boolean;
 		public var domframes:Vector.<DOMFrame>;
-		//public var displayframes:Vector.<DisplayFrame>;
 		public var totalFrames:int = 0;
 		public var isPlaced:Boolean;
 		public var isRemoved:Boolean;
@@ -40,11 +43,15 @@ package nid.xfl.dom
 		
 		public function parse(data:XML):void
 		{
-			name = data.@name;
-			color = uint(data.@color.replace("#","0x"));
-			current = Boolean2.toBoolean(data.@current);
-			isSelected = Boolean2.toBoolean(data.@isSelected);
-			animationType = data.@animationType;
+			name 				= data.@name;
+			color 				= uint(data.@color.replace("#","0x"));
+			locked 				= Boolean2.toBoolean(data.@locked);
+			current 			= Boolean2.toBoolean(data.@current);
+			isSelected 			= Boolean2.toBoolean(data.@isSelected);
+			animationType 		= data.@animationType;
+			layerType 			= data.@layerType;
+			parentLayerIndex 	= data.@parentLayerIndex;
+			hasParentLayer 		= String(data.@parentLayerIndex) == ""?false:true;
 			
 			domframes = null;
 			domframes = new Vector.<DOMFrame>();

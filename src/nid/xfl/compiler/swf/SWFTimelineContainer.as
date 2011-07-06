@@ -197,7 +197,8 @@ package nid.xfl.compiler.swf
 			// Build dictionary and display list etc
 			processTag(tag);
 			// Adjust position (just in case the parser under- or overflows)
-			if(data.position != pos + tagHeader.tagLength) {
+			if (data.position != pos + tagHeader.tagLength) {
+				trace('tagHeader.tagLength:' + tagHeader.tagLength);
 				trace("WARNING: excess bytes: " + 
 					(data.position - (pos + tagHeader.tagLength)) + ", " +
 					"Tag: " + tag.name + ", " +

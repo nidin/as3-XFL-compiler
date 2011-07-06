@@ -22,11 +22,17 @@ package nid.xfl.core
 	public class Layer extends Sprite
 	{
 		public var totalFrames:int = 0;
+		public var layerType:String;
+		public var hasParentLayer:Boolean;
+		public var parentLayerIndex:int;
+		public var clipDepth:int;
 		public var frames:Vector.<Frame>;
 		public var timeline:Dictionary = new Dictionary();
 		public var currentIndex:int = 0;
 		public var stop:Boolean;
 		public var depthOffset:int = 0;
+		public var isPublished:Boolean;
+		public var isScaned:Boolean;
 		
 		private var display:Sprite;
 		
@@ -41,7 +47,10 @@ package nid.xfl.core
 		}
 		public function construct(data:DOMLayer):void
 		{
-			name = data.name;
+			name 			 = data.name;
+			layerType 		 = data.layerType;
+			parentLayerIndex = data.parentLayerIndex;
+			hasParentLayer	 = data.hasParentLayer;
 			
 			var frame:Frame;
 			
@@ -265,20 +274,31 @@ package nid.xfl.core
 			
 			for (var i:int = 0; i < frames.length; i++)
 			{
-				frames[i].scan(_property);
+				frames[i].scan(_property, layerType);
 			}
+			
 			//trace('parent:' + property.parent);
 			//trace('_property.depth:' + _property.depth);
 			
 			depthOffset 	= property.depth + _property.depth;
 			property.depth 	= depthOffset;
 			
+			if (hasParentLayer)
+			{
+				//if (property.clipDepths == undefined) property.clipDepths = new Object();
+				property.clipDepths[parentLayerIndex] = depthOffset;
+			}
+			isScaned = true;
 			//trace('depthOffset:' + depthOffset);
 		}
 		public function publish(f:int, tags:Vector.<ITag>, property:Object, sub_tags:Vector.<ITag> = null, isButton:Boolean = false, characters:Vector.<SWFButtonRecord> = null ):void
 		{
-			property.depthOffset = depthOffset;
-			frames[f].publish(tags, property, sub_tags, isButton, characters );
+			if (frames.length > 0)
+			{
+				isPublished = true;
+				property.depthOffset = depthOffset;
+				frames[f].publish(tags, property, sub_tags, isButton, characters, layerType, clipDepth);
+			}
 		}
 	}
 

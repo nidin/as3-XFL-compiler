@@ -65,7 +65,7 @@ package
 			/**
 			 * Filter test
 			 */
-			xfleditor.load("filtertest/blur/blur.xfl");
+			//xfleditor.load("filtertest/blur/blur.xfl");
 			
 			/**
 			 * Unit Test
@@ -85,7 +85,12 @@ package
 			 *  New template test
 			 */
 			//xfleditor.load("NewTemplates/250x250-1/250x250-1.xfl");
-			//xfleditor.load("NewTemplates/250x250-2/250x250-2.xfl");
+			//xfleditor.load("250x250/250x250.xfl");
+			xfleditor.load("template test/Bhavana 300x250/Bhavana 300x250.xfl");
+			//xfleditor.load("template test/silverstreek250x250/silverstreek250x250.xfl");
+			
+			//xfleditor.load("template test/text_exp_1/text_exp_1.xfl");
+			//xfleditor.load("template test/text_exp_2/text_exp_2.xfl");
 			
 			var build:Button = new Button("Build SWF",100);
 			build.x  = stage.stageWidth - build.width;
