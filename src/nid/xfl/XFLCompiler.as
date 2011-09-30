@@ -75,6 +75,7 @@ package nid.xfl
 			abcGenerator 	= null;
 			displayList 	= null;
 			elementLibrary 	= null;
+			_characterId 	= 1;
 			abcGenerator 	= new AbcGenerator();
 			displayList 	= new Dictionary();
 			elementLibrary 	= new Dictionary();
@@ -131,9 +132,11 @@ package nid.xfl
 			//{
 				//xflobj.layers[l].scan(property);
 			//}
+			var l:int = 0;
+			
 			with(xflobj)
 			{
-				for (var l:int = 0; l < layers.length; l++)
+				for (l = 0; l < layers.length; l++)
 				{
 					if (layers[l].hasParentLayer && !layers[(layers.length - 1) - layers[l].parentLayerIndex].isScaned)
 					{

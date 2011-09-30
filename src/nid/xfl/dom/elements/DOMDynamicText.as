@@ -27,6 +27,10 @@ package nid.xfl.dom.elements
 		public function get characterId():uint { return _characterId; }
 		public function set characterId(value:uint):void { _characterId = value; }
 		
+		protected var _instanceName:String;
+		public function get instanceName():String { return _instanceName; }
+		public function set instanceName(value:String):void { _instanceName = value; }
+		
 		public function get libraryItemName():String { return ElementFactory.NOT_SUPPORTED; }
 		public function set libraryItemName(value:String):void {  }
 		
@@ -182,6 +186,13 @@ package nid.xfl.dom.elements
 			}
 			
 			return txt;
+		}
+		/**
+		 * Save modifications
+		 */
+		public function save():void
+		{
+			
 		}
 	}
 

@@ -111,6 +111,14 @@ package nid.xfl.dom
 				domlayers.push(new DOMLayer(data.layers.DOMLayer[k], doc));
 			}
 		}
+		
+		/**
+		 * Export
+		 */
+		public function export():void
+		{
+			
+		}
 	}
 
 }

@@ -3,6 +3,7 @@ package nid.xfl.dom.elements
 	import flash.display.*;
 	import flash.geom.*;
 	import nid.utils.*;
+	import nid.xfl.compiler.factory.ElementFactory;
 	import nid.xfl.compiler.swf.data.consts.BitmapFormat;
 	import nid.xfl.compiler.swf.data.consts.BitmapType;
 	import nid.xfl.compiler.swf.data.SWFFillStyle;
@@ -38,6 +39,9 @@ package nid.xfl.dom.elements
 		protected var _characterId:uint=1;
 		public function get characterId():uint { return _characterId; }
 		public function set characterId(value:uint):void { _characterId = value; }
+		
+		public function get instanceName():String { return ElementFactory.NOT_SUPPORTED; }
+		public function set instanceName(value:String):void {  }
 		
 		protected var _libraryItemName:String;
 		public function get libraryItemName():String { return _libraryItemName; }
@@ -188,6 +192,13 @@ package nid.xfl.dom.elements
 				return bitmap;
 			}
 			return new Sprite();
+		}
+		/**
+		 * Save modifications
+		 */
+		public function save():void
+		{
+			
 		}
 	}
 

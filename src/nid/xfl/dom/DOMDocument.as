@@ -76,6 +76,14 @@ package nid.xfl.dom
 			
 			parse(data.timelines.DOMTimeline);
 		}
+		
+		/**
+		 * Export
+		 */
+		override public function export():void
+		{
+			super.export();
+		}
 	}
 
 }

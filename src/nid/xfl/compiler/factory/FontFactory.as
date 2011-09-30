@@ -77,6 +77,9 @@ package nid.xfl.compiler.factory
 		 */
 		static public function loadFonts(onComplete:Function,onProgress:Function=null,onError:Function=null):void
 		{
+			fontDefinitions = null;
+			fontDefinitions = new Dictionary();
+			
 			var fontLoader:Vector.<FontObject> = new Vector.<FontObject>();
 			
 			for each(var font:FontObject in fontLibrary)

@@ -196,7 +196,20 @@ package nid.xfl.core
 			sub_tags.push(new TagEnd());
 			
 		}
-
+		
+		/**
+		 * Save modifications
+		 */
+		public function save():void
+		{
+			for (var i:int = 0; i < totalFrames; i++)
+			{
+				for (var l:int = 0; l < layers.length; l++)
+				{
+					layers[l].save(i);
+				}
+			}
+		}
 	}
 
 }

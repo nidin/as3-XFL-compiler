@@ -13,6 +13,7 @@ package nid.xfl.dom.elements
 	import nid.xfl.data.display.Color;
 	import nid.xfl.dom.*;
 	import nid.xfl.interfaces.*;
+	import nid.xfl.utils.SaveUtils;
 	import nid.xfl.XFLCompiler;
 	/**
 	 * ...
@@ -26,6 +27,9 @@ package nid.xfl.dom.elements
 		public var _characterId:uint=1;
 		public function get characterId():uint { return _characterId; }
 		public function set characterId(value:uint):void { _characterId = value; }
+		
+		public function get instanceName():String { return ElementFactory.NOT_SUPPORTED }
+		public function set instanceName(value:String):void {  }
 		
 		public function get libraryItemName():String { return ElementFactory.NOT_SUPPORTED; }
 		public function set libraryItemName(value:String):void {  }
@@ -113,6 +117,7 @@ package nid.xfl.dom.elements
 			 *  Setup text records
 			 */
 			property.yOffset 		= 0;
+			yOffset					= 0;
 			textRecords 			= new Vector.<SWFTextRecord>();
 			begin 					= true;
 			firstLine 				= true;
@@ -382,8 +387,11 @@ package nid.xfl.dom.elements
 			//trace('textRecords:'+textRecords);
 		}
 		
+		/**
+		 * Create display element
+		 */
 		public function createDisplay():DisplayObject
-		{			
+		{
 			displayText = new TextField();
 				//displayText.background = true;
 				if (name != "") displayText.name = name;
@@ -402,6 +410,21 @@ package nid.xfl.dom.elements
 			}
 			
 			return displayText;
+		}
+		/**
+		 * Save modifications
+		 */
+		public function save():void
+		{
+			textRuns = null;
+			textRuns =  SaveUtils.updateTextRun(displayText);
+		}
+		/**
+		 * Export 
+		 */
+		public function export():void
+		{
+			
 		}
 	}
 

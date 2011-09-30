@@ -431,6 +431,17 @@ package nid.xfl.core
 				break;
 			}
 		}
+		
+		/**
+		 * Save modifications
+		 */
+		public function save():void
+		{
+			for (var i:int = 0; i < rawElements.length; i++)
+			{
+				rawElements[i].save();
+			}
+		}
 	}
 
 }

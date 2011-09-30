@@ -293,11 +293,21 @@ package nid.xfl.core
 		}
 		public function publish(f:int, tags:Vector.<ITag>, property:Object, sub_tags:Vector.<ITag> = null, isButton:Boolean = false, characters:Vector.<SWFButtonRecord> = null ):void
 		{
-			if (frames.length > 0)
+			if (frames.length > f)
 			{
 				isPublished = true;
 				property.depthOffset = depthOffset;
 				frames[f].publish(tags, property, sub_tags, isButton, characters, layerType, clipDepth);
+			}
+		}
+		/**
+		 * Save modifications
+		 */
+		public function save(f:int):void
+		{
+			if (frames.length > f)
+			{
+				frames[f].save();
 			}
 		}
 	}

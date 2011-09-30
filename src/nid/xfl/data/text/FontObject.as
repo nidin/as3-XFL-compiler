@@ -32,6 +32,7 @@ package nid.xfl.data.text
 		public var italic:Boolean;
 		public var leading:int;
 		
+		public var codelookup:Dictionary
 		public var codeTable:Vector.<uint>;
 		public var glyphShapeTable:Vector.<SWFShape>;
 		public var fontAdvanceTable:Vector.<int>;
@@ -45,24 +46,22 @@ package nid.xfl.data.text
 		{
 			fontName = _fontName;
 			codeTable = new Vector.<uint>();
+			codelookup = new Dictionary();
 			if (characters != null) updateCodeTable(characters);
 		}
 		
 		public function updateCodeTable(characters:String):void
 		{
 			var codeString:String = characters.replace(/%n%/g, "");
-			var tmp:Dictionary = new Dictionary();
 			
 			for (var i:int = 0; i < codeString.length; i++)
 			{
-				if (tmp[codeString.charCodeAt(i)] == undefined)
+				if (codelookup[codeString.charCodeAt(i)] == undefined)
 				{
 					codeTable.push(codeString.charCodeAt(i));
-					tmp[codeString.charCodeAt(i)] = true;
+					codelookup[codeString.charCodeAt(i)] = true;
 				}
 			}
-			
-			tmp = null;
 		}
 		public function glyphEntries(characters:String,fontSize:int):Vector.<SWFGlyphEntry>
 		{

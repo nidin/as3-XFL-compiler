@@ -34,6 +34,10 @@ package nid.xfl.dom.elements
 		public function get characterId():uint { return _characterId; }
 		public function set characterId(value:uint):void { _characterId = value; }			
 		
+		protected var _instanceName:String;
+		public function get instanceName():String { return _instanceName; }
+		public function set instanceName(value:String):void { _instanceName = value; }
+		
 		protected var _libraryItemName:String;
 		public function get libraryItemName():String { return _libraryItemName; }
 		public function set libraryItemName(value:String):void { _libraryItemName = value; }
@@ -61,7 +65,6 @@ package nid.xfl.dom.elements
 		public var timeline:TimeLine;
 		public var button:Button2;
 		public var qName:String;
-		public var instanceName:String;
 		
 		public function DOMSymbolInstance(data:XML,refdoc:DOMDocument) 
 		{	
@@ -247,7 +250,7 @@ package nid.xfl.dom.elements
 			else
 			{
 				timeline.construct(symbolItem);
-				timeline.instanceName 	  = name;
+				timeline.instanceName 	  = _instanceName;
 				timeline._filters 		  = _filters;
 				timeline.matrix 		  = matrix;
 				timeline.centerPoint3DX   = centerPoint3DX; 
@@ -257,6 +260,20 @@ package nid.xfl.dom.elements
 			}
 			
 			return null;
+		}
+		/**
+		 * Save modifications
+		 */
+		public function save():void
+		{
+			if (symbolType == "button")
+			{
+				
+			}
+			else
+			{
+				timeline.save();
+			}
 		}
 	}
 

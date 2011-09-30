@@ -153,6 +153,14 @@ package nid.xfl
 		private function forwardComplete(e:Event):void { dispatchEvent(e); }
 		private function forwardIOError(e:IOErrorEvent):void { dispatchEvent(e); }
 		
+		
+		/**
+		 * Export xfl file
+		 */
+		override public function export():void
+		{
+			super.export();
+		}
 	}
 
 }
