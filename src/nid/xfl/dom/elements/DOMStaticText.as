@@ -43,14 +43,15 @@ package nid.xfl.dom.elements
 		public function set color(value:Color):void { _color = value }
 		
 		public var name:String;
-		public var selected:Boolean;
 		public var left:Number;
 		public var width:Number;
 		public var height:Number;
+		public var selected:Boolean;
 		public var isSelectable:Boolean;
+		public var displayText:TextField;
 		public var textRuns:Vector.<DOMTextRun>;
 		public var textRecords:Vector.<SWFTextRecord>;
-		public var displayText:TextField;
+		
 		private var yOffset:int;
 		private var begin:Boolean;
 		private var firstLine:Boolean;
@@ -66,10 +67,10 @@ package nid.xfl.dom.elements
 		{
 			
 			name 			= String(data.@name);
-			selected 		= Boolean2.toBoolean(data.@selected);
 			left 			= data.@left;
 			width 			= data.@width;
 			height 			= data.@height;
+			selected 		= Boolean2.toBoolean(data.@selected);
 			isSelectable 	= Boolean2.toBoolean(data.@isSelectable);
 			
 			_matrix = null;
@@ -131,7 +132,7 @@ package nid.xfl.dom.elements
 			
 			for (var i:int = 0; i < textRuns.length; i++)
 			{
-				trace('textRuns['+i+']:'+textRuns[i].characters);
+				//trace('textRuns['+i+']:'+textRuns[i].characters);
 				var textLines:Array = textRuns[i].characters.split("%n%");
 				
 				lineSpacing = textRuns[i].textAttrs.lineSpacing;
@@ -157,7 +158,7 @@ package nid.xfl.dom.elements
 						{
 							
 							updateInitialRecord(initialRecord, tWidth, tHeight, yOffset, lineSpacing);
-							trace('new line:', begin, nextLine, yOffset);
+							//trace('new line:', begin, nextLine, yOffset);
 							newLine 		= false;
 							nextLine 		= false;
 							tWidth			= 0;
@@ -213,8 +214,6 @@ package nid.xfl.dom.elements
 					}
 				}
 			}
-			//trace('----textRecords----');
-			//trace(textRecords);
 			/**
 			 * End text record setup
 			 */
@@ -393,9 +392,7 @@ package nid.xfl.dom.elements
 		public function createDisplay():DisplayObject
 		{
 			displayText = new TextField();
-				//displayText.background = true;
 				if (name != "") displayText.name = name;
-				displayText.backgroundColor = 0xcccccc;
 				displayText.selectable = false;
 				displayText.multiline = true;
 				displayText.wordWrap = false;
@@ -424,7 +421,7 @@ package nid.xfl.dom.elements
 		 */
 		public function export():void
 		{
-			
+			//TODO: export xml string 
 		}
 	}
 

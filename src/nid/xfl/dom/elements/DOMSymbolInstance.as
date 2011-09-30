@@ -275,6 +275,14 @@ package nid.xfl.dom.elements
 				timeline.save();
 			}
 		}
+		
+		/**
+		 * Export 
+		 */
+		public function export():void
+		{
+			//TODO: export xml string 
+		}
 	}
 
 }

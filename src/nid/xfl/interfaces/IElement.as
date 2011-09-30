@@ -26,6 +26,7 @@ package nid.xfl.interfaces
 		function publish(tags:Vector.<ITag>, property:Object):void;
 		function createDisplay():DisplayObject;
 		function save():void;
+		function export(data:String):void;
 		
 	}
 	

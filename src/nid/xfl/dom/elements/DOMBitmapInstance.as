@@ -200,6 +200,13 @@ package nid.xfl.dom.elements
 		{
 			
 		}
+		/**
+		 * Export 
+		 */
+		public function export():void
+		{
+			//TODO: export xml string 
+		}
 	}
 
 }

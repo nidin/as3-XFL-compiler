@@ -10,6 +10,7 @@ package nid.xfl.dom.elements
 	import nid.xfl.data.display.Color;
 	import nid.xfl.dom.DOMTextRun;
 	import nid.xfl.interfaces.*;
+	import nid.xfl.utils.SaveUtils;
 	/**
 	 * ...
 	 * @author Nidin P Vinayakan
@@ -39,11 +40,14 @@ package nid.xfl.dom.elements
 		public function set color(value:Color):void { _color = value }
 		
 		public var name:String;
-		public var selected:Boolean;
 		public var left:Number;
 		public var width:Number;
 		public var height:Number;
+		public var border:Boolean;
 		public var lineType:String;
+		public var selected:Boolean;
+		public var displayText:TextField;
+		public var fontRenderingMode:String;
 		public var textRuns:Vector.<DOMTextRun>;
 		
 		public function DOMInputText(data:XML=null) 
@@ -56,11 +60,13 @@ package nid.xfl.dom.elements
 		public function parse(data:XML):void
 		{			
 			name 		= String(data.@name);
-			selected 	= Boolean2.toBoolean(data.@selected);
 			left 		= data.@left;
 			width 		= data.@width;
 			height 		= data.@height;
+			border 		= Boolean2.toBoolean(data.@border);
 			lineType 	= data.@lineType;
+			selected 	= Boolean2.toBoolean(data.@selected);
+			fontRenderingMode 	= String(data.@fontRenderingMode);
 			
 			_matrix = null;
 			_matrix = new Matrix();
@@ -88,31 +94,39 @@ package nid.xfl.dom.elements
 		}
 		public function createDisplay():DisplayObject
 		{
-			var txt:TextField = new TextField();
-				//txt.background = true;
-				txt.type = TextFieldType.INPUT;
-				if (name != "") txt.name = name;
-				txt.backgroundColor = 0xcccccc;
-				txt.selectable = false;		
-				txt.width = width;
-				txt.height = height + 5;
-				txt.x = left;
+			displayText = new TextField();
+				displayText.border = border;
+				displayText.type = TextFieldType.INPUT;
+				if (name != "") displayText.name = name;
+				displayText.backgroundColor = 0xffffff;
+				displayText.selectable = false;		
+				displayText.width = width;
+				displayText.height = height + 5;
+				displayText.x = left;
 			
-			txt.transform.matrix = _matrix;
+			displayText.transform.matrix = _matrix;
 			
 			for (var i:int = 0; i < textRuns.length; i++)
 			{
-				textRuns[i].appendText(txt);
+				textRuns[i].appendText(displayText);
 			}
 			
-			return txt;
+			return displayText;
 		}
 		/**
 		 * Save modifications
 		 */
 		public function save():void
 		{
-			
+			textRuns = null;
+			textRuns =  SaveUtils.updateTextRun(displayText);
+		}
+		/**
+		 * Export 
+		 */
+		public function export():void
+		{
+			//TODO: export xml string 
 		}
 	}
 
