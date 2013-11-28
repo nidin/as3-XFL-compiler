@@ -27,7 +27,7 @@ package nid.xfl
 	
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class XFLCompiler extends SWFCompiler
 	{
@@ -134,24 +134,24 @@ package nid.xfl
 			//}
 			var l:int = 0;
 			
-			with(xflobj)
+			var o:XFLObject = xflobj;
+			
+			for (l = 0; l < o.layers.length; l++)
 			{
-				for (l = 0; l < layers.length; l++)
+				if (o.layers[l].hasParentLayer && !o.layers[(o.layers.length - 1) - o.layers[l].parentLayerIndex].isScaned)
 				{
-					if (layers[l].hasParentLayer && !layers[(layers.length - 1) - layers[l].parentLayerIndex].isScaned)
-					{
-						layers[(layers.length - 1) - layers[l].parentLayerIndex].scan(property);
-					}
-					if (layers[l].layerType == "mask")
-					{
-						layers[l].clipDepth = property.clipDepths[(layers.length - 1) - l];
-					}
-					else
-					{
-						layers[l].scan(property);
-					}
+					o.layers[(o.layers.length - 1) - o.layers[l].parentLayerIndex].scan(property);
+				}
+				if (o.layers[l].layerType == "mask")
+				{
+					o.layers[l].clipDepth = property.clipDepths[(o.layers.length - 1) - l];
+				}
+				else
+				{
+					o.layers[l].scan(property);
 				}
 			}
+			
 		}
 		public function buildSWFTags():void 
 		{
@@ -169,21 +169,21 @@ package nid.xfl
 				property.p_depth = "1";
 				property.scriptPool = new ScriptPool(i);
 				
-				for (var l:int = 0; l < xflobj.layers.length; l++)
+				var o:XFLObject = xflobj;
+				
+				for (var l:int = 0; l < o.layers.length; l++)
 				{
-					if (i < xflobj.layers[l].frames.length && xflobj.layers[l].frames[i] != null)
+					if (i < o.layers[l].frames.length && o.layers[l].frames[i] != null)
 					{
 						//xflobj.layers[l].publish(i, tags, property);
-						with (xflobj)
+						
+						if (o.layers[l].hasParentLayer && !o.layers[(o.layers.length - 1) - o.layers[l].parentLayerIndex].isPublished)
 						{
-							if (layers[l].hasParentLayer && !layers[(layers.length - 1) - layers[l].parentLayerIndex].isPublished)
-							{
-								layers[(layers.length - 1) - layers[l].parentLayerIndex].publish(i, tags, property);
-							}
-							if(layers[l].layerType != "mask")
-							{
-								layers[l].publish(i, tags, property);
-							}
+							o.layers[(o.layers.length - 1) - o.layers[l].parentLayerIndex].publish(i, tags, property);
+						}
+						if(o.layers[l].layerType != "mask")
+						{
+							o.layers[l].publish(i, tags, property);
 						}
 					}
 				}

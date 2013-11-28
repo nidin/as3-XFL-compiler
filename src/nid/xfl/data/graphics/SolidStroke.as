@@ -5,7 +5,7 @@ package nid.xfl.data.graphics
 	import nid.xfl.interfaces.IStrokeStyle;
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class SolidStroke extends StrokeStyle implements IStrokeStyle
 	{

@@ -14,7 +14,7 @@ package
 	
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class UI extends MovieClip 
 	{

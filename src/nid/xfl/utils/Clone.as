@@ -3,7 +3,7 @@ package nid.xfl.utils
 	import flash.geom.ColorTransform;
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class Clone 
 	{

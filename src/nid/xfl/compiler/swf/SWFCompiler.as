@@ -18,7 +18,7 @@ package nid.xfl.compiler.swf
 	
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class SWFCompiler extends EventDispatcher
 	{

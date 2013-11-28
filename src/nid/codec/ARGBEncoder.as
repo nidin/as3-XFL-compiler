@@ -4,7 +4,7 @@ package nid.codec
 	import flash.utils.ByteArray;
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class ARGBEncoder 
 	{

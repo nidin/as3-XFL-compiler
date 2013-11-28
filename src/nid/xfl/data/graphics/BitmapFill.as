@@ -11,7 +11,7 @@ package nid.xfl.data.graphics
 	
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class BitmapFill extends FillStyle implements IFillStyle 
 	{

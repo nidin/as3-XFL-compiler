@@ -4,7 +4,7 @@ package nid.utils
 	import flash.geom.Point;
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class MatrixTweener extends Object
 	{

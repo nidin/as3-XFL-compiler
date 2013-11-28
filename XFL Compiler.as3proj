@@ -1,31 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<project>
+<project version="2">
   <!-- Output SWF options -->
   <output>
-    <movie disabled="False" />
+    <movie outputType="Application" />
     <movie input="" />
     <movie path="bin\XFLCompiler.swf" />
     <movie fps="30" />
     <movie width="550" />
     <movie height="400" />
-    <movie version="11" />
+    <movie version="10" />
+    <movie minorVersion="1" />
+    <movie platform="Flash Player" />
     <movie background="#333333" />
   </output>
   <!-- Other classes to be compiled into your SWF -->
   <classpaths>
     <class path="src" />
-    <class path="..\..\Nidin Data\WORK DESK\FrameWorks\GUI Frame work\Dark\src" />
+    <class path="D:\nidin\repo\as3-bitmap-ui-framework\dark-ui\src" />
     <class path="lib" />
   </classpaths>
   <!-- Build options -->
   <build>
     <option accessible="False" />
+    <option advancedTelemetry="False" />
     <option allowSourcePathOverlap="False" />
     <option benchmark="False" />
     <option es="False" />
+    <option inline="False" />
     <option locale="" />
     <option loadConfig="" />
     <option optimize="True" />
+    <option omitTraces="True" />
     <option showActionScriptWarnings="True" />
     <option showBindingWarnings="True" />
     <option showInvalidCSS="True" />
@@ -41,7 +46,7 @@
     <option staticLinkRSL="True" />
     <option additional="" />
     <option compilerConstants="" />
-    <option customSDK="" />
+    <option minorVersion="" />
   </build>
   <!-- SWC Include Libraries -->
   <includeLibraries>
@@ -50,7 +55,7 @@
   <!-- SWC Libraries -->
   <libraryPaths>
     <element path="lib\actionscript-global-classes.swc" />
-    <element path="lib\ZipFile.swc" />
+    <element path="lib\as3commons-bytecode-1.1.1.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>
@@ -79,6 +84,7 @@
     <hidden path="src\nid\xfl\motion" />
     <hidden path="src\nid\xfl\settings" />
     <hidden path="src\nid\xfl\utils" />
+    <hidden path="obj" />
   </hiddenPaths>
   <!-- Executed before build -->
   <preBuildCommand />
@@ -88,5 +94,8 @@
   <options>
     <option showHiddenPaths="False" />
     <option testMovie="Default" />
+    <option testMovieCommand="" />
   </options>
+  <!-- Plugin storage -->
+  <storage />
 </project>

@@ -19,7 +19,7 @@ package nid.xfl.core
 	import nid.xfl.XFLCompiler;
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class Frame extends Sprite
 	{

@@ -3,7 +3,7 @@ package nid.xfl.motion
 	import nid.utils.Boolean2;
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class MorphCurves 
 	{		

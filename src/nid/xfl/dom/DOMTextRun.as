@@ -9,7 +9,7 @@ package nid.xfl.dom
 	import nid.xfl.XFLCompiler;
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class DOMTextRun 
 	{

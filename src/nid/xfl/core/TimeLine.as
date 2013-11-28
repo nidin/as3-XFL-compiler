@@ -18,7 +18,7 @@ package nid.xfl.core
 	import nid.xfl.XFLDocument;
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class TimeLine extends Sprite
 	{

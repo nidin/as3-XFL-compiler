@@ -5,7 +5,7 @@ package nid.xfl.engine.core
 	import nid.xfl.engine.data.DisplayData;
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class Builder extends Assembler
 	{

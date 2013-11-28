@@ -23,10 +23,10 @@ package
 	
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	
-	[SWF(backgroundColor = "#ffffff", frameRate = "30", quality = "HIGH", width = "550", height = "600")]
+	[SWF(backgroundColor = "#ffffff", frameRate = "60", quality = "HIGH", width = "550", height = "600")]
 	
 	public class Builder extends Sprite 
 	{

@@ -10,7 +10,7 @@ package nid.xfl.core
 	import nid.xfl.dom.DOMSymbolInstance;
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class DOMFactory 
 	{

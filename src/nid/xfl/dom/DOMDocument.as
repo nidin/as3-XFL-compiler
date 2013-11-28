@@ -8,7 +8,7 @@ package nid.xfl.dom
 	import nid.xfl.ZIPDocument;
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class DOMDocument extends DOMTimeline
 	{

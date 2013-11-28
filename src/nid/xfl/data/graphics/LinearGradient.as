@@ -8,7 +8,7 @@ package nid.xfl.data.graphics
 	import nid.xfl.interfaces.IFillStyle;
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class LinearGradient extends FillStyle implements IFillStyle 
 	{

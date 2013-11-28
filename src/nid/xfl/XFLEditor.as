@@ -18,7 +18,7 @@ package nid.xfl
 	
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class XFLEditor extends Sprite 
 	{

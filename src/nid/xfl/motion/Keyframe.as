@@ -3,7 +3,7 @@ package nid.xfl.motion
 	import flash.geom.Point;
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class Keyframe 
 	{

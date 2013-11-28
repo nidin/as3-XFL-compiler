@@ -5,7 +5,7 @@ package nid.xfl.data.bitmap
 	import nid.xfl.compiler.swf.data.SWFShapeRecordStyleChange;
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class BitmapShape
 	{

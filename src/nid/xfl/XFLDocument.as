@@ -3,7 +3,7 @@ package nid.xfl
 	/**
 	 * The MIT License
 	 * 
-		Copyright (c) 2011 Nidin P Vinayakan, www.infogroupindia.com
+		Copyright (c) 2011 Nidin Vinayak, www.infogroupindia.com
 		
 		Permission is hereby granted, free of charge, to any person obtaining a copy
 		of this software and associated documentation files (the "Software"), to deal
@@ -41,7 +41,7 @@ package nid.xfl
 	import nid.xfl.utils.XMLFormater;
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class XFLDocument extends DOMDocument
 	{

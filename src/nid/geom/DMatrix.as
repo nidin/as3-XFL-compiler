@@ -3,7 +3,7 @@ package nid.geom
 	import flash.geom.Matrix;
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class DMatrix extends Matrix
 	{

@@ -2,7 +2,7 @@ package nid.xfl.motion
 {
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class MotionObjectXML 
 	{

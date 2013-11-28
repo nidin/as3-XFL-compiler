@@ -2,7 +2,7 @@ package nid.xfl.compiler.abc
 {
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class AbcFactory 
 	{

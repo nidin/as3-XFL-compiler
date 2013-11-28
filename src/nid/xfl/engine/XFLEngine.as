@@ -8,7 +8,7 @@ package nid.xfl.engine
 	import nid.xfl.XFLDocument;
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class XFLEngine extends Builder
 	{

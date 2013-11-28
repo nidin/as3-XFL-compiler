@@ -2,7 +2,7 @@ package nid.xfl.data.maths
 {
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class DOMMatrix 
 	{

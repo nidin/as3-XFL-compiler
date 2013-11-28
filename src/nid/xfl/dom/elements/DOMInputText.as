@@ -13,7 +13,7 @@ package nid.xfl.dom.elements
 	import nid.xfl.utils.SaveUtils;
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class DOMInputText implements IElement 
 	{

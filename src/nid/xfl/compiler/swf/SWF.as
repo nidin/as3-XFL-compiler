@@ -23,7 +23,7 @@
 		OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 		THE SOFTWARE.
 		
-		Modified by : Nidin P Vinayakan
+		Modified by : Nidin Vinayak
 		Date 		: 2011
 	 */
 	

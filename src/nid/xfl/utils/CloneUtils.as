@@ -4,7 +4,7 @@ package nid.xfl.utils
 	import nid.xfl.interfaces.IXFilter;
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class CloneUtils 
 	{

@@ -13,7 +13,7 @@ package nid.xfl
 	import nid.xfl.dom.DOMDocument;
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class Media 
 	{

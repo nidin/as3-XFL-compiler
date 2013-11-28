@@ -8,7 +8,7 @@ package nid.xfl.interfaces
 	
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public interface IElement
 	{

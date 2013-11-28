@@ -14,7 +14,7 @@ package nid.xfl.data.graphics
 	import nid.utils.Math2;
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class Edge 
 	{

@@ -12,7 +12,7 @@ package nid.xfl.compiler.swf
 	import nid.xfl.compiler.swf.tags.TagDefineText;
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class FontSWF extends SWF 
 	{

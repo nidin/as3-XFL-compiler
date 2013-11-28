@@ -13,7 +13,7 @@ package nid.xfl.motion
 	import nid.xfl.interfaces.IXFilter;
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class EasingEquations 
 	{		

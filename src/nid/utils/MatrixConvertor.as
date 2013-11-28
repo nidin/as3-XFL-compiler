@@ -5,7 +5,7 @@ package nid.utils
 	import nid.geom.DMatrix;
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class MatrixConvertor 
 	{

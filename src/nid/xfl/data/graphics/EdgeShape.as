@@ -4,7 +4,7 @@ package nid.xfl.data.graphics
 	
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class EdgeShape extends Shape 
 	{

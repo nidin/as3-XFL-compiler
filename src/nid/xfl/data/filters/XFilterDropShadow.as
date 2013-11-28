@@ -4,7 +4,7 @@ package nid.xfl.data.filters
 	import nid.xfl.interfaces.IXFilter;
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class XFilterDropShadow implements IXFilter
 	{

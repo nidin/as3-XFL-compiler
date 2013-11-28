@@ -1,0 +1,15 @@
+-----------------------
+Edge values decoding
+-----------------------
+-Drawing commands
+! - moveTo
+| - lineTo
+/ - lineTo
+[ - curveTo
+] - curveTo
+
+-S letter notation
+!2002 2000S2 -  ignore values from S  result(!2002 2000);
+
+-hex notation
+#51F.69 - ignore value after (.) result #51F = 1311

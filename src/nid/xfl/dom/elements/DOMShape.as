@@ -16,7 +16,7 @@ package nid.xfl.dom.elements
 	
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class DOMShape extends Sprite implements IElement
 	{

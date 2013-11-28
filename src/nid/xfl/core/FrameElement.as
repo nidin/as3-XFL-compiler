@@ -7,7 +7,7 @@ package nid.xfl.core
 	import nid.xfl.interfaces.IXFilter;
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	dynamic public class FrameElement extends Sprite
 	{

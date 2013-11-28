@@ -9,7 +9,7 @@ package nid.xfl.editor.avm
 	import nid.xfl.core.TimeLine;
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class AVMEnvironment
 	{

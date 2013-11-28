@@ -6,7 +6,7 @@ package nid.xfl.data.graphics
 	import nid.utils.Colors;
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class SolidColor extends FillStyle implements IFillStyle
 	{

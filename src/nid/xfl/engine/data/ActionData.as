@@ -2,7 +2,7 @@ package nid.xfl.engine.data
 {
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class ActionData 
 	{

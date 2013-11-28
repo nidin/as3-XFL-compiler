@@ -6,7 +6,7 @@ package nid.xfl.settings
 	import flash.net.URLRequest;
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class PublishSettings 
 	{

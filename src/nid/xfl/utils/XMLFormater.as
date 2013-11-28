@@ -2,7 +2,7 @@ package nid.xfl.utils
 {
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class XMLFormater 
 	{

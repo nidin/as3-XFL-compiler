@@ -17,7 +17,7 @@ package nid.xfl.core
 	import nid.xfl.motion.TweenTypes;
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class Layer extends Sprite
 	{

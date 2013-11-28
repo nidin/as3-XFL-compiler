@@ -5,7 +5,7 @@ package nid.xfl.dom
 	//import nid.xfl.data.display.DisplayFrame;
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class DOMLayer 
 	{

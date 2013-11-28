@@ -5,7 +5,7 @@ package nid.xfl.dom
 	import nid.xfl.utils.FontTable;
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class DOMTextAttrs 
 	{

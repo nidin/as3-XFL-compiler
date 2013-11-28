@@ -4,7 +4,7 @@ package nid.xfl.data.graphics
 	import nid.xfl.compiler.swf.data.SWFGradientRecord;
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class GradientEntry 
 	{

@@ -17,7 +17,7 @@ package nid.xfl.dom
 	import nid.xfl.dom.DOMDocument;
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class DOMTimeline extends EventDispatcher
 	{

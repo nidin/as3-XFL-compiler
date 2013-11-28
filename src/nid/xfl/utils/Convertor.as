@@ -6,7 +6,7 @@ package nid.xfl.utils
 	import nid.xfl.compiler.swf.data.SWFMatrix;
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class Convertor 
 	{

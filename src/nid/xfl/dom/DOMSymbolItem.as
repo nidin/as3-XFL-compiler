@@ -10,7 +10,7 @@
 	import nid.xfl.XFLDocument;
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class DOMSymbolItem extends DOMTimeline
 	{

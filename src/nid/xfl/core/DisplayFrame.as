@@ -2,7 +2,7 @@ package nid.xfl.core
 {
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class DisplayFrame 
 	{

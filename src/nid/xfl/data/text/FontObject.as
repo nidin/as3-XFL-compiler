@@ -20,7 +20,7 @@ package nid.xfl.data.text
 	import nid.xfl.XFLCompiler;
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class FontObject extends Object
 	{

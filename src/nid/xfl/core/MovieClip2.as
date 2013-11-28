@@ -5,7 +5,7 @@ package nid.xfl.core
 	
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class MovieClip2 extends MovieClip 
 	{

@@ -10,7 +10,7 @@ package nid.xfl
 	import nid.xfl.XFLDocument;
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class Complier extends SWFCompiler
 	{

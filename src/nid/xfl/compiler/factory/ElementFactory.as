@@ -6,7 +6,7 @@ package nid.xfl.compiler.factory
 	import nid.xfl.XFLCompiler;
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class ElementFactory 
 	{

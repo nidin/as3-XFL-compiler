@@ -2,7 +2,7 @@ package nid.codec
 {
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class GIFEncoder 
 	{

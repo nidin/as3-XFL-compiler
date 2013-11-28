@@ -14,7 +14,7 @@ package nid.xfl.compiler.swf.exporters
 	
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class ShapeExporter implements IShapeExporter
 	{

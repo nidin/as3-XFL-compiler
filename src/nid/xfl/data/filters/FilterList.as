@@ -2,7 +2,7 @@ package nid.xfl.data.filters
 {
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class FilterList 
 	{

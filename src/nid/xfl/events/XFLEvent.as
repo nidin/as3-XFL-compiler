@@ -4,7 +4,7 @@ package nid.xfl.events
 	
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class XFLEvent extends Event 
 	{

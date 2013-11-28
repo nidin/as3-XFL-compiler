@@ -2,7 +2,7 @@ package nid.utils
 {
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class Colors
 	{

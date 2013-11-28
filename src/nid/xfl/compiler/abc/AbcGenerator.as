@@ -18,7 +18,7 @@ package nid.xfl.compiler.abc
 	import org.as3commons.bytecode.swf.SWFWeaver;
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class AbcGenerator 
 	{

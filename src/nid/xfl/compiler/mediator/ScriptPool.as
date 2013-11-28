@@ -3,7 +3,7 @@ package nid.xfl.compiler.mediator
 	import nid.xfl.data.script.Actionscript;
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class ScriptPool 
 	{

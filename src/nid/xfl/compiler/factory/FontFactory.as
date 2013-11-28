@@ -8,7 +8,7 @@ package nid.xfl.compiler.factory
 	import nid.xfl.data.text.FontObject;
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class FontFactory 
 	{

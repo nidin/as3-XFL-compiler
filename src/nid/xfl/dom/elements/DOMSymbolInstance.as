@@ -15,7 +15,7 @@ package nid.xfl.dom.elements
 	import nid.xfl.XFLCompiler;
 	/**
 	 * ...
-	 * @author Nidin P Vinayakan
+	 * @author Nidin Vinayak
 	 */
 	public class DOMSymbolInstance extends Sprite  implements IElement 
 	{
